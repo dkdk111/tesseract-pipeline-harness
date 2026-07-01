@@ -1,0 +1,15 @@
+{
+  "goal": "Localize the product announcement",
+  "domain": "localization",
+  "perspective": "breadth only, and it hits the box's max_breadth wall",
+  "parallel": [
+    { "goal": "Translate to Korean" },
+    { "goal": "Translate to Japanese" },
+    { "goal": "Translate to Spanish" },
+    { "goal": "Translate to German" },
+    { "goal": "Translate to French" },
+    { "goal": "Translate to Portuguese" },
+    { "goal": "Translate to Italian" },
+    { "goal": "Translate to Arabic" }
+  ]
+}

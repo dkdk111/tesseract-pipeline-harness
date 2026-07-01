@@ -46,6 +46,87 @@ _FRAGMENTS = {
         "The field splits into all-in-one, own-your-data, and networked-thought.",
         "Messaging clarity, not feature count, tends to decide adoption.",
     ],
+    # Software / DevOps
+    "build": [
+        "Compiled and bundled from a clean checkout; artifact hash recorded.",
+        "Build is green and reproducible.",
+    ],
+    "unit test": [
+        "Unit suite passed; fast feedback on core logic.",
+        "Coverage held above the agreed threshold.",
+    ],
+    "integration test": [
+        "Integration suite passed against staging dependencies.",
+        "Contract boundaries verified.",
+    ],
+    "end-to-end": [
+        "End-to-end journeys passed on a production-like environment.",
+        "No regressions in the critical user paths.",
+    ],
+    "package": [
+        "Release artifacts packaged and signed.",
+        "Version, changelog, and checksums attached.",
+    ],
+    # Data / ETL
+    "validate": [
+        "Nulls, duplicates, and out-of-range values flagged and quarantined.",
+        "Row counts reconciled against the source.",
+    ],
+    "ingest": [
+        "Source pulled incrementally since the last watermark.",
+        "Schema and volume checks passed at the boundary.",
+    ],
+    "sessioni": [
+        "Events grouped into sessions by inactivity gap.",
+        "Session boundaries stable across reruns.",
+    ],
+    "dimension": [
+        "User dimensions derived with slowly-changing history kept.",
+        "Keys conform to the warehouse model.",
+    ],
+    "revenue": [
+        "Revenue facts computed and reconciled to billing.",
+        "Currency and refunds handled explicitly.",
+    ],
+    "load": [
+        "Loaded idempotently; partitions swapped atomically.",
+        "A downstream freshness signal was emitted.",
+    ],
+    # Writing
+    "outline": [
+        "A spine set from macro to micro before any prose.",
+        "Each section earns its place against the chapter's claim.",
+    ],
+    "opening": [
+        "Opens on the live question, not a definition.",
+        "Earns attention before it asks for it.",
+    ],
+    "argument": [
+        "The core claim stated, then pressured, then held.",
+        "Objections invited rather than hidden.",
+    ],
+    "closing": [
+        "Closes by handing the reader the next question.",
+        "Recovers the chapter's spine in one line.",
+    ],
+    "draft": [
+        "Drafted for thought, not decoration; one idea per paragraph.",
+        "Voice kept plain and load-bearing.",
+    ],
+    "edit": [
+        "Tightened for rhythm; even cadence broken on purpose.",
+        "Cut what the argument did not need.",
+    ],
+    # Localization
+    "translate": [
+        "Rendered for meaning and register, not word for word.",
+        "Idioms localized; terminology kept consistent.",
+    ],
+    # Small fixes
+    "typo": [
+        "The incorrect token located and corrected in place.",
+        "No surrounding text touched.",
+    ],
     "notion": [
         "Positioned as an all-in-one workspace: docs, wikis, projects, and databases.",
         "Pricing spans a free personal tier up to business and enterprise seats.",

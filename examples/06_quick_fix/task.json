@@ -1,0 +1,5 @@
+{
+  "goal": "Fix the typo in the installation command in README",
+  "domain": "maintenance",
+  "perspective": "a single leaf: the harness refuses to invent dimensions"
+}

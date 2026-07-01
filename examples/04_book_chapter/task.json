@@ -1,0 +1,19 @@
+{
+  "goal": "Write the chapter 'What a Question Is'",
+  "domain": "writing",
+  "perspective": "time wrapping order and breadth (a revision loop)",
+  "iterative": true,
+  "rounds": 2,
+  "sequence": [
+    { "goal": "Outline the chapter from macro to micro" },
+    {
+      "goal": "Draft the sections",
+      "parallel": [
+        { "goal": "Draft the opening" },
+        { "goal": "Draft the argument" },
+        { "goal": "Draft the closing" }
+      ]
+    },
+    { "goal": "Edit for voice and rhythm" }
+  ]
+}

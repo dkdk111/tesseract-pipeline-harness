@@ -81,6 +81,33 @@ Output ends with:
 
 See a full recorded run in [`examples/01_market_brief/`](examples/01_market_brief).
 
+## Demo gallery: many domains, many shapes
+
+The harness is convincing from more than one angle only if it behaves differently on
+different work. Six demos, each a different domain and a different structural
+signature, ship with the repo. Run them all at once:
+
+    python -m tesseract_pipeline gallery
+
+```
+example                domain         O B D T  leaf  perspective
+01_market_brief        research       O B D T   10   all four axes open (a full tesseract)
+02_software_release    devops         O B . .    6   order + breadth, with a human approval gate on deploy
+03_data_pipeline       data / etl     O B D .    8   order, breadth, and depth, with no time axis
+04_book_chapter        writing        O B . T    5   time wrapping order and breadth (a revision loop)
+05_bulk_translation    localization   . B . .    6   breadth only, and it hits the box's max_breadth wall
+06_quick_fix           maintenance    . . . .    1   a single leaf: the harness refuses to invent dimensions
+```
+
+(O = order, B = breadth, D = depth, T = time; a dot means the axis was not opened.)
+
+Two of these are the hardest cases to fake, and they work: `02_software_release`
+holds its deploy step at a human approval gate instead of executing it, and
+`05_bulk_translation` declares more parallel branches than the box allows and hits
+the max_breadth wall (the surplus is queued, not dropped silently). And
+`06_quick_fix` opens no axis at all, because a one-line job is honestly a line. See
+[`examples/README.md`](examples/README.md) for the full tour.
+
 ## Use it as a real harness
 
 ### Engine mode (Python)

@@ -1,0 +1,26 @@
+{
+  "goal": "Produce the weekly analytics dataset",
+  "domain": "data / etl",
+  "perspective": "order, breadth, and depth, with no time axis",
+  "sequence": [
+    {
+      "goal": "Ingest raw events from all sources",
+      "parallel": [
+        { "goal": "Ingest web events" },
+        { "goal": "Ingest mobile events" },
+        { "goal": "Ingest billing events" }
+      ]
+    },
+    { "goal": "Validate and clean the ingested data" },
+    {
+      "goal": "Transform into the analytics schema",
+      "oversized": true,
+      "parts": [
+        { "goal": "Sessionize events" },
+        { "goal": "Derive user dimensions" },
+        { "goal": "Compute revenue facts" }
+      ]
+    },
+    { "goal": "Load into the warehouse" }
+  ]
+}

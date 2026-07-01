@@ -42,6 +42,7 @@ def plan(task: dict, box: Optional[Box] = None, depth: int = 0, node_id: str = "
     """Read the task's declared nature and return the self-designed Node tree."""
     box = box or Box()
     goal = task.get("goal", "")
+    approval = bool(task.get("approval"))
 
     # Question 1: is one pass enough? If not, sweep Time.
     if task.get("iterative") and box.allows(Axis.TIME):
@@ -116,6 +117,7 @@ def plan(task: dict, box: Optional[Box] = None, depth: int = 0, node_id: str = "
                     "Forced to a leaf: the Stop wall closes the sweep."
                 ),
                 stop=f"max_depth {box.max_depth} reached",
+                approval_required=approval,
             )
         parts = task["parts"]
         children = [plan(u, box, depth + 1, _unit_id(u, f"{node_id}-p{i}")) for i, u in enumerate(parts)]
@@ -132,9 +134,19 @@ def plan(task: dict, box: Optional[Box] = None, depth: int = 0, node_id: str = "
         )
 
     # None of the four fit: it is a leaf. Leaving it a leaf is a real decision.
+    if approval:
+        reason = (
+            "A high-risk, irreversible, or outside-the-repo action. It is a leaf, but "
+            "it is not self-designed or executed autonomously: it waits at the human "
+            "approval gate above the three walls."
+        )
+    else:
+        reason = "Small enough to handle in one pass; leaving it a leaf is the honest decision."
     return Node(
         id=node_id,
         goal=goal,
         axis=Axis.LEAF,
-        reason="Small enough to handle in one pass; leaving it a leaf is the honest decision.",
+        reason=reason,
+        approval_required=approval,
+        stop="held at the human approval gate" if approval else None,
     )

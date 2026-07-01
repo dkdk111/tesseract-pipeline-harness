@@ -6,7 +6,8 @@
   "geometry": "tesseract",
   "stop": "stopped after 2 rounds (reached max rounds for this run)",
   "rounds": 2,
-  "result": "## Competitive market brief on note-taking apps\n\n## Gather raw material on each competitor\n\n## Gather on Notion\n\n### Notion product lines\n- Product surface spans documents, databases, and collaborative views.\n- Feature depth is the moat; onboarding cost is the tax.\n- (revised in light of: a review of round 1 that flags gaps to fill in the next pass)\n\n### Notion pricing tiers\n- Free tiers are the funnel; value gates sit at team and sync features.\n- Per-seat pricing dominates; flat plans read as premium.\n- (revised in light of: a review of round 1 that flags gaps to fill in the next pass)\n\n### Notion positioning\n- The field splits into all-in-one, own-your-data, and networked-thought.\n- Messaging clarity, not feature count, tends to decide adoption.\n- (revised in light of: a review of round 1 that flags gaps to fill in the next pass)\n\n### Gather on Obsidian\n- Local-first Markdown vault with a strong plugin ecosystem.\n- Free for personal use; paid sync and publish add-ons.\n- Owns the power-user, own-your-data niche.\n- (revised in light of: a review of round 1 that flags gaps to fill in the next pass)\n\n### Gather on Roam Research\n- Bidirectional links and the daily-notes graph as the core loop.\n- Premium positioning with a flat subscription.\n- Defined the networked-thought category, now contested.\n- (revised in light of: a review of round 1 that flags gaps to fill in the next pass)\n\n## Analyze the collected material across dimensions\n\n### Compare pricing across competitors\n- Free tiers are the funnel; value gates sit at team and sync features.\n- Per-seat pricing dominates; flat plans read as premium.\n- (revised in light of: a review of round 1 that flags gaps to fill in the next pass)\n\n### Compare features across competitors\n- Databases, links, and sync are the axes of differentiation.\n- Extensibility (plugins, API) separates power tools from simple notes.\n- (revised in light of: a review of round 1 that flags gaps to fill in the next pass)\n\n### Compare positioning across competitors\n- The field splits into all-in-one, own-your-data, and networked-thought.\n- Messaging clarity, not feature count, tends to decide adoption.\n- (revised in light of: a review of round 1 that flags gaps to fill in the next pass)\n\n### Write the brief from the analysis\n- Key points gathered and organized for this goal.\n- Findings are consistent with the brief's scope.\n- (revised in light of: a review of round 1 that flags gaps to fill in the next pass)\n\n### Review the draft and verify the structure was honest\n- Key points gathered and organized for this goal.\n- Findings are consistent with the brief's scope.\n- (revised in light of: a review of round 1 that flags gaps to fill in the next pass)",
+  "approval_required": false,
+  "result": "## Competitive market brief on note-taking apps\n\n## Gather raw material on each competitor\n\n## Gather on Notion\n\n### Notion product lines\n- Product surface spans documents, databases, and collaborative views.\n- Feature depth is the moat; onboarding cost is the tax.\n- (revised in light of: a review of round 1 that flags gaps to fill in the next pass)\n\n### Notion pricing tiers\n- Free tiers are the funnel; value gates sit at team and sync features.\n- Per-seat pricing dominates; flat plans read as premium.\n- (revised in light of: a review of round 1 that flags gaps to fill in the next pass)\n\n### Notion positioning\n- The field splits into all-in-one, own-your-data, and networked-thought.\n- Messaging clarity, not feature count, tends to decide adoption.\n- (revised in light of: a review of round 1 that flags gaps to fill in the next pass)\n\n### Gather on Obsidian\n- Local-first Markdown vault with a strong plugin ecosystem.\n- Free for personal use; paid sync and publish add-ons.\n- Owns the power-user, own-your-data niche.\n- (revised in light of: a review of round 1 that flags gaps to fill in the next pass)\n\n### Gather on Roam Research\n- Bidirectional links and the daily-notes graph as the core loop.\n- Premium positioning with a flat subscription.\n- Defined the networked-thought category, now contested.\n- (revised in light of: a review of round 1 that flags gaps to fill in the next pass)\n\n## Analyze the collected material across dimensions\n\n### Compare pricing across competitors\n- Free tiers are the funnel; value gates sit at team and sync features.\n- Per-seat pricing dominates; flat plans read as premium.\n- (revised in light of: a review of round 1 that flags gaps to fill in the next pass)\n\n### Compare features across competitors\n- Databases, links, and sync are the axes of differentiation.\n- Extensibility (plugins, API) separates power tools from simple notes.\n- (revised in light of: a review of round 1 that flags gaps to fill in the next pass)\n\n### Compare positioning across competitors\n- The field splits into all-in-one, own-your-data, and networked-thought.\n- Messaging clarity, not feature count, tends to decide adoption.\n- (revised in light of: a review of round 1 that flags gaps to fill in the next pass)\n\n### Write the brief from the analysis\n- Key points gathered and organized for this goal.\n- Findings are consistent with the brief's scope.\n- (revised in light of: a review of round 1 that flags gaps to fill in the next pass)\n\n### Review the draft and verify the structure was honest\n- Drafted for thought, not decoration; one idea per paragraph.\n- Voice kept plain and load-bearing.\n- (revised in light of: a review of round 1 that flags gaps to fill in the next pass)",
   "children": [
     {
       "id": "root-round",
@@ -16,7 +17,8 @@
       "geometry": "line",
       "stop": "closes when the last dependent step completes",
       "rounds": 1,
-      "result": "## Competitive market brief on note-taking apps\n\n## Gather raw material on each competitor\n\n## Gather on Notion\n\n### Notion product lines\n- Product surface spans documents, databases, and collaborative views.\n- Feature depth is the moat; onboarding cost is the tax.\n- (revised in light of: a review of round 1 that flags gaps to fill in the next pass)\n\n### Notion pricing tiers\n- Free tiers are the funnel; value gates sit at team and sync features.\n- Per-seat pricing dominates; flat plans read as premium.\n- (revised in light of: a review of round 1 that flags gaps to fill in the next pass)\n\n### Notion positioning\n- The field splits into all-in-one, own-your-data, and networked-thought.\n- Messaging clarity, not feature count, tends to decide adoption.\n- (revised in light of: a review of round 1 that flags gaps to fill in the next pass)\n\n### Gather on Obsidian\n- Local-first Markdown vault with a strong plugin ecosystem.\n- Free for personal use; paid sync and publish add-ons.\n- Owns the power-user, own-your-data niche.\n- (revised in light of: a review of round 1 that flags gaps to fill in the next pass)\n\n### Gather on Roam Research\n- Bidirectional links and the daily-notes graph as the core loop.\n- Premium positioning with a flat subscription.\n- Defined the networked-thought category, now contested.\n- (revised in light of: a review of round 1 that flags gaps to fill in the next pass)\n\n## Analyze the collected material across dimensions\n\n### Compare pricing across competitors\n- Free tiers are the funnel; value gates sit at team and sync features.\n- Per-seat pricing dominates; flat plans read as premium.\n- (revised in light of: a review of round 1 that flags gaps to fill in the next pass)\n\n### Compare features across competitors\n- Databases, links, and sync are the axes of differentiation.\n- Extensibility (plugins, API) separates power tools from simple notes.\n- (revised in light of: a review of round 1 that flags gaps to fill in the next pass)\n\n### Compare positioning across competitors\n- The field splits into all-in-one, own-your-data, and networked-thought.\n- Messaging clarity, not feature count, tends to decide adoption.\n- (revised in light of: a review of round 1 that flags gaps to fill in the next pass)\n\n### Write the brief from the analysis\n- Key points gathered and organized for this goal.\n- Findings are consistent with the brief's scope.\n- (revised in light of: a review of round 1 that flags gaps to fill in the next pass)\n\n### Review the draft and verify the structure was honest\n- Key points gathered and organized for this goal.\n- Findings are consistent with the brief's scope.\n- (revised in light of: a review of round 1 that flags gaps to fill in the next pass)",
+      "approval_required": false,
+      "result": "## Competitive market brief on note-taking apps\n\n## Gather raw material on each competitor\n\n## Gather on Notion\n\n### Notion product lines\n- Product surface spans documents, databases, and collaborative views.\n- Feature depth is the moat; onboarding cost is the tax.\n- (revised in light of: a review of round 1 that flags gaps to fill in the next pass)\n\n### Notion pricing tiers\n- Free tiers are the funnel; value gates sit at team and sync features.\n- Per-seat pricing dominates; flat plans read as premium.\n- (revised in light of: a review of round 1 that flags gaps to fill in the next pass)\n\n### Notion positioning\n- The field splits into all-in-one, own-your-data, and networked-thought.\n- Messaging clarity, not feature count, tends to decide adoption.\n- (revised in light of: a review of round 1 that flags gaps to fill in the next pass)\n\n### Gather on Obsidian\n- Local-first Markdown vault with a strong plugin ecosystem.\n- Free for personal use; paid sync and publish add-ons.\n- Owns the power-user, own-your-data niche.\n- (revised in light of: a review of round 1 that flags gaps to fill in the next pass)\n\n### Gather on Roam Research\n- Bidirectional links and the daily-notes graph as the core loop.\n- Premium positioning with a flat subscription.\n- Defined the networked-thought category, now contested.\n- (revised in light of: a review of round 1 that flags gaps to fill in the next pass)\n\n## Analyze the collected material across dimensions\n\n### Compare pricing across competitors\n- Free tiers are the funnel; value gates sit at team and sync features.\n- Per-seat pricing dominates; flat plans read as premium.\n- (revised in light of: a review of round 1 that flags gaps to fill in the next pass)\n\n### Compare features across competitors\n- Databases, links, and sync are the axes of differentiation.\n- Extensibility (plugins, API) separates power tools from simple notes.\n- (revised in light of: a review of round 1 that flags gaps to fill in the next pass)\n\n### Compare positioning across competitors\n- The field splits into all-in-one, own-your-data, and networked-thought.\n- Messaging clarity, not feature count, tends to decide adoption.\n- (revised in light of: a review of round 1 that flags gaps to fill in the next pass)\n\n### Write the brief from the analysis\n- Key points gathered and organized for this goal.\n- Findings are consistent with the brief's scope.\n- (revised in light of: a review of round 1 that flags gaps to fill in the next pass)\n\n### Review the draft and verify the structure was honest\n- Drafted for thought, not decoration; one idea per paragraph.\n- Voice kept plain and load-bearing.\n- (revised in light of: a review of round 1 that flags gaps to fill in the next pass)",
       "children": [
         {
           "id": "gather-raw-material-on-each-competitor",
@@ -26,6 +28,7 @@
           "geometry": "plane",
           "stop": "3 branches, under max_breadth 6",
           "rounds": 1,
+          "approval_required": false,
           "result": "## Gather raw material on each competitor\n\n## Gather on Notion\n\n### Notion product lines\n- Product surface spans documents, databases, and collaborative views.\n- Feature depth is the moat; onboarding cost is the tax.\n- (revised in light of: a review of round 1 that flags gaps to fill in the next pass)\n\n### Notion pricing tiers\n- Free tiers are the funnel; value gates sit at team and sync features.\n- Per-seat pricing dominates; flat plans read as premium.\n- (revised in light of: a review of round 1 that flags gaps to fill in the next pass)\n\n### Notion positioning\n- The field splits into all-in-one, own-your-data, and networked-thought.\n- Messaging clarity, not feature count, tends to decide adoption.\n- (revised in light of: a review of round 1 that flags gaps to fill in the next pass)\n\n### Gather on Obsidian\n- Local-first Markdown vault with a strong plugin ecosystem.\n- Free for personal use; paid sync and publish add-ons.\n- Owns the power-user, own-your-data niche.\n- (revised in light of: a review of round 1 that flags gaps to fill in the next pass)\n\n### Gather on Roam Research\n- Bidirectional links and the daily-notes graph as the core loop.\n- Premium positioning with a flat subscription.\n- Defined the networked-thought category, now contested.\n- (revised in light of: a review of round 1 that flags gaps to fill in the next pass)",
           "children": [
             {
@@ -36,6 +39,7 @@
               "geometry": "solid",
               "stop": "depth 1, under max_depth 3",
               "rounds": 1,
+              "approval_required": false,
               "result": "## Gather on Notion\n\n### Notion product lines\n- Product surface spans documents, databases, and collaborative views.\n- Feature depth is the moat; onboarding cost is the tax.\n- (revised in light of: a review of round 1 that flags gaps to fill in the next pass)\n\n### Notion pricing tiers\n- Free tiers are the funnel; value gates sit at team and sync features.\n- Per-seat pricing dominates; flat plans read as premium.\n- (revised in light of: a review of round 1 that flags gaps to fill in the next pass)\n\n### Notion positioning\n- The field splits into all-in-one, own-your-data, and networked-thought.\n- Messaging clarity, not feature count, tends to decide adoption.\n- (revised in light of: a review of round 1 that flags gaps to fill in the next pass)",
               "children": [
                 {
@@ -46,6 +50,7 @@
                   "geometry": "point",
                   "stop": null,
                   "rounds": 1,
+                  "approval_required": false,
                   "result": "### Notion product lines\n- Product surface spans documents, databases, and collaborative views.\n- Feature depth is the moat; onboarding cost is the tax.\n- (revised in light of: a review of round 1 that flags gaps to fill in the next pass)",
                   "children": []
                 },
@@ -57,6 +62,7 @@
                   "geometry": "point",
                   "stop": null,
                   "rounds": 1,
+                  "approval_required": false,
                   "result": "### Notion pricing tiers\n- Free tiers are the funnel; value gates sit at team and sync features.\n- Per-seat pricing dominates; flat plans read as premium.\n- (revised in light of: a review of round 1 that flags gaps to fill in the next pass)",
                   "children": []
                 },
@@ -68,6 +74,7 @@
                   "geometry": "point",
                   "stop": null,
                   "rounds": 1,
+                  "approval_required": false,
                   "result": "### Notion positioning\n- The field splits into all-in-one, own-your-data, and networked-thought.\n- Messaging clarity, not feature count, tends to decide adoption.\n- (revised in light of: a review of round 1 that flags gaps to fill in the next pass)",
                   "children": []
                 }
@@ -81,6 +88,7 @@
               "geometry": "point",
               "stop": null,
               "rounds": 1,
+              "approval_required": false,
               "result": "### Gather on Obsidian\n- Local-first Markdown vault with a strong plugin ecosystem.\n- Free for personal use; paid sync and publish add-ons.\n- Owns the power-user, own-your-data niche.\n- (revised in light of: a review of round 1 that flags gaps to fill in the next pass)",
               "children": []
             },
@@ -92,6 +100,7 @@
               "geometry": "point",
               "stop": null,
               "rounds": 1,
+              "approval_required": false,
               "result": "### Gather on Roam Research\n- Bidirectional links and the daily-notes graph as the core loop.\n- Premium positioning with a flat subscription.\n- Defined the networked-thought category, now contested.\n- (revised in light of: a review of round 1 that flags gaps to fill in the next pass)",
               "children": []
             }
@@ -105,6 +114,7 @@
           "geometry": "plane",
           "stop": "3 branches, under max_breadth 6",
           "rounds": 1,
+          "approval_required": false,
           "result": "## Analyze the collected material across dimensions\n\n### Compare pricing across competitors\n- Free tiers are the funnel; value gates sit at team and sync features.\n- Per-seat pricing dominates; flat plans read as premium.\n- (revised in light of: a review of round 1 that flags gaps to fill in the next pass)\n\n### Compare features across competitors\n- Databases, links, and sync are the axes of differentiation.\n- Extensibility (plugins, API) separates power tools from simple notes.\n- (revised in light of: a review of round 1 that flags gaps to fill in the next pass)\n\n### Compare positioning across competitors\n- The field splits into all-in-one, own-your-data, and networked-thought.\n- Messaging clarity, not feature count, tends to decide adoption.\n- (revised in light of: a review of round 1 that flags gaps to fill in the next pass)",
           "children": [
             {
@@ -115,6 +125,7 @@
               "geometry": "point",
               "stop": null,
               "rounds": 1,
+              "approval_required": false,
               "result": "### Compare pricing across competitors\n- Free tiers are the funnel; value gates sit at team and sync features.\n- Per-seat pricing dominates; flat plans read as premium.\n- (revised in light of: a review of round 1 that flags gaps to fill in the next pass)",
               "children": []
             },
@@ -126,6 +137,7 @@
               "geometry": "point",
               "stop": null,
               "rounds": 1,
+              "approval_required": false,
               "result": "### Compare features across competitors\n- Databases, links, and sync are the axes of differentiation.\n- Extensibility (plugins, API) separates power tools from simple notes.\n- (revised in light of: a review of round 1 that flags gaps to fill in the next pass)",
               "children": []
             },
@@ -137,6 +149,7 @@
               "geometry": "point",
               "stop": null,
               "rounds": 1,
+              "approval_required": false,
               "result": "### Compare positioning across competitors\n- The field splits into all-in-one, own-your-data, and networked-thought.\n- Messaging clarity, not feature count, tends to decide adoption.\n- (revised in light of: a review of round 1 that flags gaps to fill in the next pass)",
               "children": []
             }
@@ -150,6 +163,7 @@
           "geometry": "point",
           "stop": null,
           "rounds": 1,
+          "approval_required": false,
           "result": "### Write the brief from the analysis\n- Key points gathered and organized for this goal.\n- Findings are consistent with the brief's scope.\n- (revised in light of: a review of round 1 that flags gaps to fill in the next pass)",
           "children": []
         },
@@ -161,7 +175,8 @@
           "geometry": "point",
           "stop": null,
           "rounds": 1,
-          "result": "### Review the draft and verify the structure was honest\n- Key points gathered and organized for this goal.\n- Findings are consistent with the brief's scope.\n- (revised in light of: a review of round 1 that flags gaps to fill in the next pass)",
+          "approval_required": false,
+          "result": "### Review the draft and verify the structure was honest\n- Drafted for thought, not decoration; one idea per paragraph.\n- Voice kept plain and load-bearing.\n- (revised in light of: a review of round 1 that flags gaps to fill in the next pass)",
           "children": []
         }
       ]

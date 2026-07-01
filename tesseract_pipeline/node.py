@@ -22,6 +22,7 @@ class Node:
     reason: str = ""
     stop: Optional[str] = None
     rounds: int = 1
+    approval_required: bool = False
     children: List["Node"] = field(default_factory=list)
     result: Optional[str] = None
 
@@ -58,6 +59,7 @@ class Node:
             "geometry": self.geometry,
             "stop": self.stop,
             "rounds": self.rounds,
+            "approval_required": self.approval_required,
             "result": self.result,
             "children": [c.to_dict() for c in self.children],
         }
@@ -71,6 +73,7 @@ class Node:
             reason=data.get("reason", ""),
             stop=data.get("stop"),
             rounds=int(data.get("rounds", 1)),
+            approval_required=bool(data.get("approval_required", False)),
             result=data.get("result"),
             children=[cls.from_dict(c) for c in data.get("children", [])],
         )

@@ -1,0 +1,18 @@
+{
+  "goal": "Ship the v2.1 release",
+  "domain": "devops",
+  "perspective": "order plus breadth, with a human approval gate on deploy",
+  "sequence": [
+    { "goal": "Build the application" },
+    {
+      "goal": "Run the test suites",
+      "parallel": [
+        { "goal": "Run unit tests" },
+        { "goal": "Run integration tests" },
+        { "goal": "Run end-to-end tests" }
+      ]
+    },
+    { "goal": "Package the release artifacts" },
+    { "goal": "Deploy v2.1 to production", "approval": true }
+  ]
+}

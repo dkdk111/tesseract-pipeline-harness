@@ -24,5 +24,7 @@ jobs:
         run: python -m unittest discover -s tests -v
       - name: Run the demo end to end (no keys)
         run: python -m tesseract_pipeline demo
+      - name: Run the full demo gallery
+        run: python -m tesseract_pipeline gallery
       - name: Verify the committed example still opens all four axes
         run: python -m tesseract_pipeline render examples/01_market_brief/tesseract.json

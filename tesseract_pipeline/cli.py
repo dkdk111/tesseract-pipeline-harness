@@ -13,14 +13,17 @@ Also runnable without installing, from the repo root:
 from __future__ import annotations
 
 import argparse
+import glob
 import json
 import os
 import sys
 from typing import List, Optional
 
 from . import __version__
+from .axes import Axis
 from .box import Box
 from .executor import Executor
+from .node import Node
 from .planner import plan
 from .render import render_tree
 from .trace import write_trace
@@ -89,6 +92,65 @@ def _cmd_run(args: argparse.Namespace) -> int:
     return 0
 
 
+def _count(node: Node, predicate) -> int:
+    total = 1 if predicate(node) else 0
+    for child in node.children:
+        total += _count(child, predicate)
+    return total
+
+
+def _axes_marks(opened: set) -> str:
+    order = [Axis.ORDER, Axis.BREADTH, Axis.DEPTH, Axis.TIME]
+    return " ".join(a.value[0].upper() if a in opened else "." for a in order)
+
+
+def _cmd_gallery(args: argparse.Namespace) -> int:
+    box = Box.load(_box_path(args.box))
+    paths = sorted(glob.glob(os.path.join(_REPO_ROOT, "examples", "*", "task.json")))
+    if not paths:
+        print("no examples found under examples/*/task.json", file=sys.stderr)
+        return 1
+
+    rows = []
+    for path in paths:
+        task = _load_task(path)
+        root = plan(task, box)
+        Executor(SimulatedWorker()).run(root)
+        opened = root.axes_opened()
+        leaves = _count(root, lambda n: n.axis == Axis.LEAF)
+        gates = _count(root, lambda n: n.approval_required)
+        rounds = root.rounds if root.axis == Axis.TIME else 1
+        name = os.path.basename(os.path.dirname(path))
+        rows.append(
+            {
+                "name": name,
+                "domain": task.get("domain", "-"),
+                "axes": _axes_marks(opened),
+                "leaves": leaves,
+                "rounds": rounds,
+                "gates": gates,
+                "perspective": task.get("perspective", ""),
+            }
+        )
+
+    bar = "=" * 96
+    print(bar)
+    print("TESSERACT PIPELINE  -  gallery  (O=order  B=breadth  D=depth  T=time; a dot means not opened)")
+    print(bar)
+    header = f"{'example':22} {'domain':16} {'O B D T':9} {'leaf':>4} {'rnd':>3} {'gate':>4}  perspective"
+    print(header)
+    print("-" * 96)
+    for r in rows:
+        print(
+            f"{r['name']:22} {r['domain']:16} {r['axes']:9} {r['leaves']:>4} "
+            f"{r['rounds']:>3} {r['gates']:>4}  {r['perspective']}"
+        )
+    print(bar)
+    print(f"{len(rows)} demos. Each opens exactly the axes its work needs, and no more.")
+    print("Render any one in full with: python -m tesseract_pipeline render examples/<name>/tesseract.json")
+    return 0
+
+
 def _cmd_render(args: argparse.Namespace) -> int:
     with open(args.file, "r", encoding="utf-8") as fh:
         print(render_tree(json.load(fh)))
@@ -138,6 +200,10 @@ def build_parser() -> argparse.ArgumentParser:
     p_run.add_argument("--out", help="output directory for the trace")
     p_run.add_argument("--box", help="path to box.config.json")
     p_run.set_defaults(func=_cmd_run)
+
+    p_gallery = sub.add_parser("gallery", help="run every example and print a comparison table")
+    p_gallery.add_argument("--box", help="path to box.config.json")
+    p_gallery.set_defaults(func=_cmd_gallery)
 
     p_render = sub.add_parser("render", help="pretty-print a tesseract.json trace")
     p_render.add_argument("file", help="path to a tesseract.json")

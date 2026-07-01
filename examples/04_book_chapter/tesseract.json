@@ -1,0 +1,99 @@
+{
+  "id": "root",
+  "goal": "Write the chapter 'What a Question Is'",
+  "axis": "time",
+  "reason": "One pass is not enough: the result of a pass feeds the next. Sweep time and run the whole structure in revision rounds.",
+  "geometry": "tesseract",
+  "stop": "stopped after 2 rounds (reached max rounds for this run)",
+  "rounds": 2,
+  "approval_required": false,
+  "result": "## Write the chapter 'What a Question Is'\n\n### Outline the chapter from macro to micro\n- A spine set from macro to micro before any prose.\n- Each section earns its place against the chapter's claim.\n- (revised in light of: a review of round 1 that flags gaps to fill in the next pass)\n\n## Draft the sections\n\n### Draft the opening\n- Opens on the live question, not a definition.\n- Earns attention before it asks for it.\n- (revised in light of: a review of round 1 that flags gaps to fill in the next pass)\n\n### Draft the argument\n- The core claim stated, then pressured, then held.\n- Objections invited rather than hidden.\n- (revised in light of: a review of round 1 that flags gaps to fill in the next pass)\n\n### Draft the closing\n- Closes by handing the reader the next question.\n- Recovers the chapter's spine in one line.\n- (revised in light of: a review of round 1 that flags gaps to fill in the next pass)\n\n### Edit for voice and rhythm\n- Tightened for rhythm; even cadence broken on purpose.\n- Cut what the argument did not need.\n- (revised in light of: a review of round 1 that flags gaps to fill in the next pass)",
+  "children": [
+    {
+      "id": "root-round",
+      "goal": "Write the chapter 'What a Question Is'",
+      "axis": "order",
+      "reason": "Front-to-back dependency: each step consumes the previous step's output. Sweep order and lay the steps on a line.",
+      "geometry": "line",
+      "stop": "closes when the last dependent step completes",
+      "rounds": 1,
+      "approval_required": false,
+      "result": "## Write the chapter 'What a Question Is'\n\n### Outline the chapter from macro to micro\n- A spine set from macro to micro before any prose.\n- Each section earns its place against the chapter's claim.\n- (revised in light of: a review of round 1 that flags gaps to fill in the next pass)\n\n## Draft the sections\n\n### Draft the opening\n- Opens on the live question, not a definition.\n- Earns attention before it asks for it.\n- (revised in light of: a review of round 1 that flags gaps to fill in the next pass)\n\n### Draft the argument\n- The core claim stated, then pressured, then held.\n- Objections invited rather than hidden.\n- (revised in light of: a review of round 1 that flags gaps to fill in the next pass)\n\n### Draft the closing\n- Closes by handing the reader the next question.\n- Recovers the chapter's spine in one line.\n- (revised in light of: a review of round 1 that flags gaps to fill in the next pass)\n\n### Edit for voice and rhythm\n- Tightened for rhythm; even cadence broken on purpose.\n- Cut what the argument did not need.\n- (revised in light of: a review of round 1 that flags gaps to fill in the next pass)",
+      "children": [
+        {
+          "id": "outline-the-chapter-from-macro-to-micro",
+          "goal": "Outline the chapter from macro to micro",
+          "axis": "leaf",
+          "reason": "Small enough to handle in one pass; leaving it a leaf is the honest decision.",
+          "geometry": "point",
+          "stop": null,
+          "rounds": 1,
+          "approval_required": false,
+          "result": "### Outline the chapter from macro to micro\n- A spine set from macro to micro before any prose.\n- Each section earns its place against the chapter's claim.\n- (revised in light of: a review of round 1 that flags gaps to fill in the next pass)",
+          "children": []
+        },
+        {
+          "id": "draft-the-sections",
+          "goal": "Draft the sections",
+          "axis": "breadth",
+          "reason": "The branches are independent and do not wait on one another. Sweep breadth and fan them out in parallel.",
+          "geometry": "plane",
+          "stop": "3 branches, under max_breadth 6",
+          "rounds": 1,
+          "approval_required": false,
+          "result": "## Draft the sections\n\n### Draft the opening\n- Opens on the live question, not a definition.\n- Earns attention before it asks for it.\n- (revised in light of: a review of round 1 that flags gaps to fill in the next pass)\n\n### Draft the argument\n- The core claim stated, then pressured, then held.\n- Objections invited rather than hidden.\n- (revised in light of: a review of round 1 that flags gaps to fill in the next pass)\n\n### Draft the closing\n- Closes by handing the reader the next question.\n- Recovers the chapter's spine in one line.\n- (revised in light of: a review of round 1 that flags gaps to fill in the next pass)",
+          "children": [
+            {
+              "id": "draft-the-opening",
+              "goal": "Draft the opening",
+              "axis": "leaf",
+              "reason": "Small enough to handle in one pass; leaving it a leaf is the honest decision.",
+              "geometry": "point",
+              "stop": null,
+              "rounds": 1,
+              "approval_required": false,
+              "result": "### Draft the opening\n- Opens on the live question, not a definition.\n- Earns attention before it asks for it.\n- (revised in light of: a review of round 1 that flags gaps to fill in the next pass)",
+              "children": []
+            },
+            {
+              "id": "draft-the-argument",
+              "goal": "Draft the argument",
+              "axis": "leaf",
+              "reason": "Small enough to handle in one pass; leaving it a leaf is the honest decision.",
+              "geometry": "point",
+              "stop": null,
+              "rounds": 1,
+              "approval_required": false,
+              "result": "### Draft the argument\n- The core claim stated, then pressured, then held.\n- Objections invited rather than hidden.\n- (revised in light of: a review of round 1 that flags gaps to fill in the next pass)",
+              "children": []
+            },
+            {
+              "id": "draft-the-closing",
+              "goal": "Draft the closing",
+              "axis": "leaf",
+              "reason": "Small enough to handle in one pass; leaving it a leaf is the honest decision.",
+              "geometry": "point",
+              "stop": null,
+              "rounds": 1,
+              "approval_required": false,
+              "result": "### Draft the closing\n- Closes by handing the reader the next question.\n- Recovers the chapter's spine in one line.\n- (revised in light of: a review of round 1 that flags gaps to fill in the next pass)",
+              "children": []
+            }
+          ]
+        },
+        {
+          "id": "edit-for-voice-and-rhythm",
+          "goal": "Edit for voice and rhythm",
+          "axis": "leaf",
+          "reason": "Small enough to handle in one pass; leaving it a leaf is the honest decision.",
+          "geometry": "point",
+          "stop": null,
+          "rounds": 1,
+          "approval_required": false,
+          "result": "### Edit for voice and rhythm\n- Tightened for rhythm; even cadence broken on purpose.\n- Cut what the argument did not need.\n- (revised in light of: a review of round 1 that flags gaps to fill in the next pass)",
+          "children": []
+        }
+      ]
+    }
+  ]
+}

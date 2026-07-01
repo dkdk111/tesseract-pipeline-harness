@@ -79,7 +79,9 @@ def build_trace_md(root: Node, goal: str, box: Box) -> str:
 def _walk_md(node: Node, depth: int, lines: List[str]) -> None:
     indent = "  " * depth
     label = _LABEL[node.axis]
-    if node.axis == Axis.LEAF:
+    if node.axis == Axis.LEAF and node.approval_required:
+        head = f"{indent}- `{node.id}` is a **Leaf held at the approval gate** ({node.geometry})."
+    elif node.axis == Axis.LEAF:
         head = f"{indent}- `{node.id}` stayed a **Leaf** ({node.geometry})."
     else:
         rounds = f", {node.rounds} rounds" if node.axis == Axis.TIME else ""

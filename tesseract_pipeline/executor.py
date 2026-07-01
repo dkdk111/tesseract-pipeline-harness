@@ -30,6 +30,15 @@ class Executor:
 
     def run(self, node: Node, context: str = "") -> str:
         if node.axis == Axis.LEAF:
+            if node.approval_required:
+                # The approval gate above the three walls: high-risk, irreversible, or
+                # outside-the-repo actions are never executed autonomously.
+                node.result = (
+                    f"[HELD FOR HUMAN APPROVAL] {node.goal}\n"
+                    "- Not self-designed or executed by the harness.\n"
+                    "- A human must approve this action before it runs."
+                )
+                return node.result
             node.result = self.worker.run(node.goal, context)
             return node.result
         if node.axis == Axis.ORDER:

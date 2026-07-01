@@ -1,0 +1,85 @@
+{
+  "id": "root",
+  "goal": "Localize the product announcement",
+  "axis": "breadth",
+  "reason": "The branches are independent and do not wait on one another. Sweep breadth and fan them out in parallel.",
+  "geometry": "plane",
+  "stop": "capped at max_breadth 6; 2 branch(es) queued, not dropped silently",
+  "rounds": 1,
+  "approval_required": false,
+  "result": "## Localize the product announcement\n\n### Translate to Korean\n- Rendered for meaning and register, not word for word.\n- Idioms localized; terminology kept consistent.\n\n### Translate to Japanese\n- Rendered for meaning and register, not word for word.\n- Idioms localized; terminology kept consistent.\n\n### Translate to Spanish\n- Rendered for meaning and register, not word for word.\n- Idioms localized; terminology kept consistent.\n\n### Translate to German\n- Rendered for meaning and register, not word for word.\n- Idioms localized; terminology kept consistent.\n\n### Translate to French\n- Rendered for meaning and register, not word for word.\n- Idioms localized; terminology kept consistent.\n\n### Translate to Portuguese\n- Rendered for meaning and register, not word for word.\n- Idioms localized; terminology kept consistent.",
+  "children": [
+    {
+      "id": "translate-to-korean",
+      "goal": "Translate to Korean",
+      "axis": "leaf",
+      "reason": "Small enough to handle in one pass; leaving it a leaf is the honest decision.",
+      "geometry": "point",
+      "stop": null,
+      "rounds": 1,
+      "approval_required": false,
+      "result": "### Translate to Korean\n- Rendered for meaning and register, not word for word.\n- Idioms localized; terminology kept consistent.",
+      "children": []
+    },
+    {
+      "id": "translate-to-japanese",
+      "goal": "Translate to Japanese",
+      "axis": "leaf",
+      "reason": "Small enough to handle in one pass; leaving it a leaf is the honest decision.",
+      "geometry": "point",
+      "stop": null,
+      "rounds": 1,
+      "approval_required": false,
+      "result": "### Translate to Japanese\n- Rendered for meaning and register, not word for word.\n- Idioms localized; terminology kept consistent.",
+      "children": []
+    },
+    {
+      "id": "translate-to-spanish",
+      "goal": "Translate to Spanish",
+      "axis": "leaf",
+      "reason": "Small enough to handle in one pass; leaving it a leaf is the honest decision.",
+      "geometry": "point",
+      "stop": null,
+      "rounds": 1,
+      "approval_required": false,
+      "result": "### Translate to Spanish\n- Rendered for meaning and register, not word for word.\n- Idioms localized; terminology kept consistent.",
+      "children": []
+    },
+    {
+      "id": "translate-to-german",
+      "goal": "Translate to German",
+      "axis": "leaf",
+      "reason": "Small enough to handle in one pass; leaving it a leaf is the honest decision.",
+      "geometry": "point",
+      "stop": null,
+      "rounds": 1,
+      "approval_required": false,
+      "result": "### Translate to German\n- Rendered for meaning and register, not word for word.\n- Idioms localized; terminology kept consistent.",
+      "children": []
+    },
+    {
+      "id": "translate-to-french",
+      "goal": "Translate to French",
+      "axis": "leaf",
+      "reason": "Small enough to handle in one pass; leaving it a leaf is the honest decision.",
+      "geometry": "point",
+      "stop": null,
+      "rounds": 1,
+      "approval_required": false,
+      "result": "### Translate to French\n- Rendered for meaning and register, not word for word.\n- Idioms localized; terminology kept consistent.",
+      "children": []
+    },
+    {
+      "id": "translate-to-portuguese",
+      "goal": "Translate to Portuguese",
+      "axis": "leaf",
+      "reason": "Small enough to handle in one pass; leaving it a leaf is the honest decision.",
+      "geometry": "point",
+      "stop": null,
+      "rounds": 1,
+      "approval_required": false,
+      "result": "### Translate to Portuguese\n- Rendered for meaning and register, not word for word.\n- Idioms localized; terminology kept consistent.",
+      "children": []
+    }
+  ]
+}

@@ -1,0 +1,135 @@
+{
+  "id": "root",
+  "goal": "Produce the weekly analytics dataset",
+  "axis": "order",
+  "reason": "Front-to-back dependency: each step consumes the previous step's output. Sweep order and lay the steps on a line.",
+  "geometry": "line",
+  "stop": "closes when the last dependent step completes",
+  "rounds": 1,
+  "approval_required": false,
+  "result": "## Produce the weekly analytics dataset\n\n## Ingest raw events from all sources\n\n### Ingest web events\n- Source pulled incrementally since the last watermark.\n- Schema and volume checks passed at the boundary.\n\n### Ingest mobile events\n- Source pulled incrementally since the last watermark.\n- Schema and volume checks passed at the boundary.\n\n### Ingest billing events\n- Source pulled incrementally since the last watermark.\n- Schema and volume checks passed at the boundary.\n\n### Validate and clean the ingested data\n- Nulls, duplicates, and out-of-range values flagged and quarantined.\n- Row counts reconciled against the source.\n- (revised in light of: ## Ingest raw events from all sources)\n\n## Transform into the analytics schema\n\n### Sessionize events\n- Events grouped into sessions by inactivity gap.\n- Session boundaries stable across reruns.\n- (revised in light of: ## Ingest raw events from all sources)\n\n### Derive user dimensions\n- User dimensions derived with slowly-changing history kept.\n- Keys conform to the warehouse model.\n- (revised in light of: ## Ingest raw events from all sources)\n\n### Compute revenue facts\n- Revenue facts computed and reconciled to billing.\n- Currency and refunds handled explicitly.\n- (revised in light of: ## Ingest raw events from all sources)\n\n### Load into the warehouse\n- Loaded idempotently; partitions swapped atomically.\n- A downstream freshness signal was emitted.\n- (revised in light of: ## Ingest raw events from all sources)",
+  "children": [
+    {
+      "id": "ingest-raw-events-from-all-sources",
+      "goal": "Ingest raw events from all sources",
+      "axis": "breadth",
+      "reason": "The branches are independent and do not wait on one another. Sweep breadth and fan them out in parallel.",
+      "geometry": "plane",
+      "stop": "3 branches, under max_breadth 6",
+      "rounds": 1,
+      "approval_required": false,
+      "result": "## Ingest raw events from all sources\n\n### Ingest web events\n- Source pulled incrementally since the last watermark.\n- Schema and volume checks passed at the boundary.\n\n### Ingest mobile events\n- Source pulled incrementally since the last watermark.\n- Schema and volume checks passed at the boundary.\n\n### Ingest billing events\n- Source pulled incrementally since the last watermark.\n- Schema and volume checks passed at the boundary.",
+      "children": [
+        {
+          "id": "ingest-web-events",
+          "goal": "Ingest web events",
+          "axis": "leaf",
+          "reason": "Small enough to handle in one pass; leaving it a leaf is the honest decision.",
+          "geometry": "point",
+          "stop": null,
+          "rounds": 1,
+          "approval_required": false,
+          "result": "### Ingest web events\n- Source pulled incrementally since the last watermark.\n- Schema and volume checks passed at the boundary.",
+          "children": []
+        },
+        {
+          "id": "ingest-mobile-events",
+          "goal": "Ingest mobile events",
+          "axis": "leaf",
+          "reason": "Small enough to handle in one pass; leaving it a leaf is the honest decision.",
+          "geometry": "point",
+          "stop": null,
+          "rounds": 1,
+          "approval_required": false,
+          "result": "### Ingest mobile events\n- Source pulled incrementally since the last watermark.\n- Schema and volume checks passed at the boundary.",
+          "children": []
+        },
+        {
+          "id": "ingest-billing-events",
+          "goal": "Ingest billing events",
+          "axis": "leaf",
+          "reason": "Small enough to handle in one pass; leaving it a leaf is the honest decision.",
+          "geometry": "point",
+          "stop": null,
+          "rounds": 1,
+          "approval_required": false,
+          "result": "### Ingest billing events\n- Source pulled incrementally since the last watermark.\n- Schema and volume checks passed at the boundary.",
+          "children": []
+        }
+      ]
+    },
+    {
+      "id": "validate-and-clean-the-ingested-data",
+      "goal": "Validate and clean the ingested data",
+      "axis": "leaf",
+      "reason": "Small enough to handle in one pass; leaving it a leaf is the honest decision.",
+      "geometry": "point",
+      "stop": null,
+      "rounds": 1,
+      "approval_required": false,
+      "result": "### Validate and clean the ingested data\n- Nulls, duplicates, and out-of-range values flagged and quarantined.\n- Row counts reconciled against the source.\n- (revised in light of: ## Ingest raw events from all sources)",
+      "children": []
+    },
+    {
+      "id": "transform-into-the-analytics-schema",
+      "goal": "Transform into the analytics schema",
+      "axis": "depth",
+      "reason": "This node is too large to handle in one pass, so it is a seed, not a leaf. Sweep depth and open a smaller structure of its own in place.",
+      "geometry": "solid",
+      "stop": "depth 1, under max_depth 3",
+      "rounds": 1,
+      "approval_required": false,
+      "result": "## Transform into the analytics schema\n\n### Sessionize events\n- Events grouped into sessions by inactivity gap.\n- Session boundaries stable across reruns.\n- (revised in light of: ## Ingest raw events from all sources)\n\n### Derive user dimensions\n- User dimensions derived with slowly-changing history kept.\n- Keys conform to the warehouse model.\n- (revised in light of: ## Ingest raw events from all sources)\n\n### Compute revenue facts\n- Revenue facts computed and reconciled to billing.\n- Currency and refunds handled explicitly.\n- (revised in light of: ## Ingest raw events from all sources)",
+      "children": [
+        {
+          "id": "sessionize-events",
+          "goal": "Sessionize events",
+          "axis": "leaf",
+          "reason": "Small enough to handle in one pass; leaving it a leaf is the honest decision.",
+          "geometry": "point",
+          "stop": null,
+          "rounds": 1,
+          "approval_required": false,
+          "result": "### Sessionize events\n- Events grouped into sessions by inactivity gap.\n- Session boundaries stable across reruns.\n- (revised in light of: ## Ingest raw events from all sources)",
+          "children": []
+        },
+        {
+          "id": "derive-user-dimensions",
+          "goal": "Derive user dimensions",
+          "axis": "leaf",
+          "reason": "Small enough to handle in one pass; leaving it a leaf is the honest decision.",
+          "geometry": "point",
+          "stop": null,
+          "rounds": 1,
+          "approval_required": false,
+          "result": "### Derive user dimensions\n- User dimensions derived with slowly-changing history kept.\n- Keys conform to the warehouse model.\n- (revised in light of: ## Ingest raw events from all sources)",
+          "children": []
+        },
+        {
+          "id": "compute-revenue-facts",
+          "goal": "Compute revenue facts",
+          "axis": "leaf",
+          "reason": "Small enough to handle in one pass; leaving it a leaf is the honest decision.",
+          "geometry": "point",
+          "stop": null,
+          "rounds": 1,
+          "approval_required": false,
+          "result": "### Compute revenue facts\n- Revenue facts computed and reconciled to billing.\n- Currency and refunds handled explicitly.\n- (revised in light of: ## Ingest raw events from all sources)",
+          "children": []
+        }
+      ]
+    },
+    {
+      "id": "load-into-the-warehouse",
+      "goal": "Load into the warehouse",
+      "axis": "leaf",
+      "reason": "Small enough to handle in one pass; leaving it a leaf is the honest decision.",
+      "geometry": "point",
+      "stop": null,
+      "rounds": 1,
+      "approval_required": false,
+      "result": "### Load into the warehouse\n- Loaded idempotently; partitions swapped atomically.\n- A downstream freshness signal was emitted.\n- (revised in light of: ## Ingest raw events from all sources)",
+      "children": []
+    }
+  ]
+}

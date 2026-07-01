@@ -1,0 +1,98 @@
+{
+  "id": "root",
+  "goal": "Ship the v2.1 release",
+  "axis": "order",
+  "reason": "Front-to-back dependency: each step consumes the previous step's output. Sweep order and lay the steps on a line.",
+  "geometry": "line",
+  "stop": "closes when the last dependent step completes",
+  "rounds": 1,
+  "approval_required": false,
+  "result": "## Ship the v2.1 release\n\n### Build the application\n- Compiled and bundled from a clean checkout; artifact hash recorded.\n- Build is green and reproducible.\n\n## Run the test suites\n\n### Run unit tests\n- Unit suite passed; fast feedback on core logic.\n- Coverage held above the agreed threshold.\n- (revised in light of: ### Build the application)\n\n### Run integration tests\n- Integration suite passed against staging dependencies.\n- Contract boundaries verified.\n- (revised in light of: ### Build the application)\n\n### Run end-to-end tests\n- End-to-end journeys passed on a production-like environment.\n- No regressions in the critical user paths.\n- (revised in light of: ### Build the application)\n\n### Package the release artifacts\n- Release artifacts packaged and signed.\n- Version, changelog, and checksums attached.\n- (revised in light of: ### Build the application)\n\n[HELD FOR HUMAN APPROVAL] Deploy v2.1 to production\n- Not self-designed or executed by the harness.\n- A human must approve this action before it runs.",
+  "children": [
+    {
+      "id": "build-the-application",
+      "goal": "Build the application",
+      "axis": "leaf",
+      "reason": "Small enough to handle in one pass; leaving it a leaf is the honest decision.",
+      "geometry": "point",
+      "stop": null,
+      "rounds": 1,
+      "approval_required": false,
+      "result": "### Build the application\n- Compiled and bundled from a clean checkout; artifact hash recorded.\n- Build is green and reproducible.",
+      "children": []
+    },
+    {
+      "id": "run-the-test-suites",
+      "goal": "Run the test suites",
+      "axis": "breadth",
+      "reason": "The branches are independent and do not wait on one another. Sweep breadth and fan them out in parallel.",
+      "geometry": "plane",
+      "stop": "3 branches, under max_breadth 6",
+      "rounds": 1,
+      "approval_required": false,
+      "result": "## Run the test suites\n\n### Run unit tests\n- Unit suite passed; fast feedback on core logic.\n- Coverage held above the agreed threshold.\n- (revised in light of: ### Build the application)\n\n### Run integration tests\n- Integration suite passed against staging dependencies.\n- Contract boundaries verified.\n- (revised in light of: ### Build the application)\n\n### Run end-to-end tests\n- End-to-end journeys passed on a production-like environment.\n- No regressions in the critical user paths.\n- (revised in light of: ### Build the application)",
+      "children": [
+        {
+          "id": "run-unit-tests",
+          "goal": "Run unit tests",
+          "axis": "leaf",
+          "reason": "Small enough to handle in one pass; leaving it a leaf is the honest decision.",
+          "geometry": "point",
+          "stop": null,
+          "rounds": 1,
+          "approval_required": false,
+          "result": "### Run unit tests\n- Unit suite passed; fast feedback on core logic.\n- Coverage held above the agreed threshold.\n- (revised in light of: ### Build the application)",
+          "children": []
+        },
+        {
+          "id": "run-integration-tests",
+          "goal": "Run integration tests",
+          "axis": "leaf",
+          "reason": "Small enough to handle in one pass; leaving it a leaf is the honest decision.",
+          "geometry": "point",
+          "stop": null,
+          "rounds": 1,
+          "approval_required": false,
+          "result": "### Run integration tests\n- Integration suite passed against staging dependencies.\n- Contract boundaries verified.\n- (revised in light of: ### Build the application)",
+          "children": []
+        },
+        {
+          "id": "run-end-to-end-tests",
+          "goal": "Run end-to-end tests",
+          "axis": "leaf",
+          "reason": "Small enough to handle in one pass; leaving it a leaf is the honest decision.",
+          "geometry": "point",
+          "stop": null,
+          "rounds": 1,
+          "approval_required": false,
+          "result": "### Run end-to-end tests\n- End-to-end journeys passed on a production-like environment.\n- No regressions in the critical user paths.\n- (revised in light of: ### Build the application)",
+          "children": []
+        }
+      ]
+    },
+    {
+      "id": "package-the-release-artifacts",
+      "goal": "Package the release artifacts",
+      "axis": "leaf",
+      "reason": "Small enough to handle in one pass; leaving it a leaf is the honest decision.",
+      "geometry": "point",
+      "stop": null,
+      "rounds": 1,
+      "approval_required": false,
+      "result": "### Package the release artifacts\n- Release artifacts packaged and signed.\n- Version, changelog, and checksums attached.\n- (revised in light of: ### Build the application)",
+      "children": []
+    },
+    {
+      "id": "deploy-v2-1-to-production",
+      "goal": "Deploy v2.1 to production",
+      "axis": "leaf",
+      "reason": "A high-risk, irreversible, or outside-the-repo action. It is a leaf, but it is not self-designed or executed autonomously: it waits at the human approval gate above the three walls.",
+      "geometry": "point",
+      "stop": "held at the human approval gate",
+      "rounds": 1,
+      "approval_required": true,
+      "result": "[HELD FOR HUMAN APPROVAL] Deploy v2.1 to production\n- Not self-designed or executed by the harness.\n- A human must approve this action before it runs.",
+      "children": []
+    }
+  ]
+}

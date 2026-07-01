@@ -42,7 +42,8 @@ def _walk(node: dict, depth: int, tally: Dict[str, int], lines: List[str]) -> No
     geo = node.get("geometry", "point")
     rounds = node.get("rounds", 1)
     round_note = f" x{rounds} rounds" if axis == "time" and rounds and rounds > 1 else ""
-    lines.append(f"{indent}- [{axis}] {node.get('id', '?')}  ({geo}{round_note})")
+    gate = "  <APPROVAL GATE>" if node.get("approval_required") else ""
+    lines.append(f"{indent}- [{axis}] {node.get('id', '?')}  ({geo}{round_note}){gate}")
     lines.append(f"{indent}    goal:   {node.get('goal', '').strip()}")
     reason = (node.get("reason") or "").strip()
     if reason:

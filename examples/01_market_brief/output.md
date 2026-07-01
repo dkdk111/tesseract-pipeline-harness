@@ -54,6 +54,6 @@
 - (revised in light of: a review of round 1 that flags gaps to fill in the next pass)
 
 ### Review the draft and verify the structure was honest
-- Key points gathered and organized for this goal.
-- Findings are consistent with the brief's scope.
+- Drafted for thought, not decoration; one idea per paragraph.
+- Voice kept plain and load-bearing.
 - (revised in light of: a review of round 1 that flags gaps to fill in the next pass)

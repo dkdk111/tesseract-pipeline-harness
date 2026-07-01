@@ -1,0 +1,12 @@
+{
+  "id": "root",
+  "goal": "Fix the typo in the installation command in README",
+  "axis": "leaf",
+  "reason": "Small enough to handle in one pass; leaving it a leaf is the honest decision.",
+  "geometry": "point",
+  "stop": null,
+  "rounds": 1,
+  "approval_required": false,
+  "result": "### Fix the typo in the installation command in README\n- The incorrect token located and corrected in place.\n- No surrounding text touched.",
+  "children": []
+}
