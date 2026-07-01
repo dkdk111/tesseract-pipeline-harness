@@ -46,6 +46,8 @@ of truth for how you behave here; this file only adds the entry sequence.
   its declared nature and executes it with a pluggable worker. Read it to see the
   ontology as code; the two modes share the same four axes and the same box.
 
+For a conceptual tour of both modes, see `docs/OVERVIEW.md`.
+
 ## Try it without keys
 
 The engine runs a full example with no model and no keys:

@@ -15,6 +15,9 @@ stays inside a box you control, and writes a trace that makes the four dimension
 visible. It runs with no model and no API keys out of the box, and it plugs into a
 real model or a coding agent when you want one.
 
+New to the idea? Start with [docs/OVERVIEW.md](docs/OVERVIEW.md): what the harness
+means, where its meta-instructions live, and how the two modes differ.
+
 ---
 
 ## The idea in one paragraph
@@ -195,6 +198,7 @@ recursive, incremental decision requires.
 
 ```
 AGENTS.md / CLAUDE.md      Agent-mode operating law (the brain for a coding agent).
+docs/OVERVIEW.md           What the harness means and where the meta-instructions live.
 box.config.json            The box the engine reads (you edit this).
 harness/                   The ontology, shared by both modes.
   00_ontology.md             The sweep and the four axes.
@@ -208,7 +212,9 @@ tesseract_pipeline/        The engine (standard library only).
   worker.py                  Pluggable leaf work; deterministic simulator default.
   box.py, node.py, axes.py   The box, the node tree, the axes.
   trace.py, render.py, cli.py
-examples/                  A recorded run and an LLM-worker sketch.
+examples/                  Six demos across domains, each with generated traces,
+                           plus an LLM-worker sketch.
+templates/                 Blank task and trace templates.
 tests/                     Standard-library unittest suite.
 tools/render_tesseract.py  Back-compatible renderer shim.
 ```

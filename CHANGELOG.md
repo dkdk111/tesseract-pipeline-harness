@@ -8,6 +8,8 @@ follow [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ### Added
 
+- `docs/OVERVIEW.md`: a conceptual guide to what the harness means, where the
+  meta-instructions live, and how agent mode and engine mode differ.
 - Demo gallery: six examples across distinct domains and structural signatures
   (research, devops, data/etl, writing, localization, maintenance), each committed
   with its generated trace. New `tesseract gallery` command prints a comparison
