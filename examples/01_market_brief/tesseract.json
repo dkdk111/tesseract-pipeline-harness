@@ -1,0 +1,155 @@
+{
+  "id": "root",
+  "goal": "Competitive market brief on note-taking apps",
+  "axis": "time",
+  "reason": "The brief does not close in one pass. Draft, review, then revise by what the review found. Run the whole structure in rounds until it converges.",
+  "geometry": "tesseract",
+  "stop": "converged on round 2 (round 2 improved on round 1, a third round would be a dry round)",
+  "rounds": 2,
+  "children": [
+    {
+      "id": "round-body",
+      "goal": "One pass of the brief",
+      "axis": "order",
+      "reason": "Front-to-back dependency: you must collect before you can analyze, analyze before you can write, write before you can review. Each step consumes the previous step's output.",
+      "geometry": "line",
+      "stop": "last dependent step (review) completed",
+      "rounds": 1,
+      "children": [
+        {
+          "id": "collect",
+          "goal": "Gather raw material on each competitor",
+          "axis": "breadth",
+          "reason": "The three competitors are independent. Gathering on one does not wait on gathering on another, so fan them into parallel branches.",
+          "geometry": "plane",
+          "stop": "3 branches, under max_breadth 6",
+          "rounds": 1,
+          "children": [
+            {
+              "id": "collect:notion",
+              "goal": "Gather on Notion",
+              "axis": "depth",
+              "reason": "Notion is too large to summarize flat: multiple product lines, several pricing tiers, a broad positioning. This node is a seed, not a leaf, so it opens its own smaller structure in place.",
+              "geometry": "solid",
+              "stop": "depth 1, under max_depth 3",
+              "rounds": 1,
+              "children": [
+                {
+                  "id": "collect:notion:products",
+                  "goal": "Notion product lines (docs, wiki, projects, calendar, AI)",
+                  "axis": "leaf",
+                  "reason": "Small enough to handle in one pass.",
+                  "geometry": "point",
+                  "stop": null,
+                  "rounds": 1,
+                  "children": []
+                },
+                {
+                  "id": "collect:notion:pricing",
+                  "goal": "Notion pricing tiers (free, plus, business, enterprise)",
+                  "axis": "leaf",
+                  "reason": "Small enough to handle in one pass.",
+                  "geometry": "point",
+                  "stop": null,
+                  "rounds": 1,
+                  "children": []
+                },
+                {
+                  "id": "collect:notion:positioning",
+                  "goal": "Notion positioning (all-in-one workspace)",
+                  "axis": "leaf",
+                  "reason": "Small enough to handle in one pass.",
+                  "geometry": "point",
+                  "stop": null,
+                  "rounds": 1,
+                  "children": []
+                }
+              ]
+            },
+            {
+              "id": "collect:obsidian",
+              "goal": "Gather on Obsidian",
+              "axis": "leaf",
+              "reason": "One focused product, small enough to summarize in one pass. Leaving it a leaf is the honest decision; forcing a depth sweep here would pay nothing.",
+              "geometry": "point",
+              "stop": null,
+              "rounds": 1,
+              "children": []
+            },
+            {
+              "id": "collect:roam",
+              "goal": "Gather on Roam Research",
+              "axis": "leaf",
+              "reason": "One focused product, small enough to summarize in one pass.",
+              "geometry": "point",
+              "stop": null,
+              "rounds": 1,
+              "children": []
+            }
+          ]
+        },
+        {
+          "id": "analyze",
+          "goal": "Analyze the collected material across dimensions",
+          "axis": "breadth",
+          "reason": "The three dimensions (pricing, features, positioning) are independent lenses. Each can run without waiting on the others, so fan them into parallel branches.",
+          "geometry": "plane",
+          "stop": "3 branches, under max_breadth 6",
+          "rounds": 1,
+          "children": [
+            {
+              "id": "analyze:pricing",
+              "goal": "Compare pricing across competitors",
+              "axis": "leaf",
+              "reason": "A direct comparison over collected data, one pass.",
+              "geometry": "point",
+              "stop": null,
+              "rounds": 1,
+              "children": []
+            },
+            {
+              "id": "analyze:features",
+              "goal": "Compare features across competitors",
+              "axis": "leaf",
+              "reason": "A direct comparison over collected data, one pass.",
+              "geometry": "point",
+              "stop": null,
+              "rounds": 1,
+              "children": []
+            },
+            {
+              "id": "analyze:positioning",
+              "goal": "Compare positioning across competitors",
+              "axis": "leaf",
+              "reason": "A direct comparison over collected data, one pass.",
+              "geometry": "point",
+              "stop": null,
+              "rounds": 1,
+              "children": []
+            }
+          ]
+        },
+        {
+          "id": "write",
+          "goal": "Write the brief from the analysis",
+          "axis": "leaf",
+          "reason": "A single drafting pass over the finished analysis.",
+          "geometry": "point",
+          "stop": null,
+          "rounds": 1,
+          "children": []
+        },
+        {
+          "id": "review",
+          "goal": "Review the draft and verify the structure was honest",
+          "axis": "leaf",
+          "reason": "A single adversarial pass: is any dependency false, is any split unpaid, is the recommendation supported. Its finding feeds the next time-axis round.",
+          "geometry": "point",
+          "stop": null,
+          "rounds": 1,
+          "children": []
+        }
+      ]
+    }
+  ]
+}

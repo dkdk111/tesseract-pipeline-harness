@@ -1,0 +1,15 @@
+# Agent working area: keep the folder and its README, ignore run outputs.
+.tesseract/*
+!.tesseract/README.md
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
