@@ -7,9 +7,9 @@ dict that `plan()` consumes.
 
 This is a deterministic heuristic, on purpose. It recognizes a set of common prose
 patterns and is intentionally limited; unusual phrasing falls back to fewer axes or
-a leaf. Open-domain, robust inference is the job of a model: see `LLMPlanner` below
-and `examples/llm_planner_example.py`. The point of this module is that a real code
-path exists from raw text to a self-designed structure, honest about its ceiling.
+a leaf. Open-domain, robust inference is the job of a model: see `LLMPlanner` in
+`tesseract_pipeline.llm`. The point of this module is that a real code path exists
+from raw text to a self-designed structure, honest about its ceiling.
 
 Patterns recognized:
 

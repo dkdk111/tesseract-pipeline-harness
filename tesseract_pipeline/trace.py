@@ -28,7 +28,7 @@ _LABEL = {
 }
 
 
-def write_trace(root: Node, goal: str, box: Box, out_dir: str, issues=None) -> dict:
+def write_trace(root: Node, goal: str, box: Box, out_dir: str, issues=None, simulated: bool = True) -> dict:
     os.makedirs(out_dir, exist_ok=True)
 
     tesseract_path = os.path.join(out_dir, "tesseract.json")
@@ -42,12 +42,19 @@ def write_trace(root: Node, goal: str, box: Box, out_dir: str, issues=None) -> d
 
     output_path = os.path.join(out_dir, "output.md")
     with open(output_path, "w", encoding="utf-8", newline="\n") as fh:
-        note = (
-            "> Note: the four-axis structure and its execution (ordering, parallelism, "
-            "recursion, iteration) are real. The leaf content below is deterministic "
-            "placeholder text from the default simulator, not a model's work. Attach a "
-            "Worker or LLMWorker for real leaves.\n\n"
-        )
+        if simulated:
+            note = (
+                "> Note: the four-axis structure and its execution (ordering, parallelism, "
+                "recursion, iteration) are real. The leaf content below is deterministic "
+                "placeholder text from the default simulator, not a model's work. Attach a "
+                "Worker or LLMWorker for real leaves.\n\n"
+            )
+        else:
+            note = (
+                "> Note: this is a live-model run. The four-axis structure was self-designed "
+                "and the leaf content below was produced by a real model. Non-deterministic; "
+                "committed as a captured reference (not regenerated in CI).\n\n"
+            )
         fh.write(note + (root.result or "").strip() + "\n")
 
     return {

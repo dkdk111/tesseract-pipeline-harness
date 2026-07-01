@@ -1,0 +1,99 @@
+{
+  "id": "root",
+  "goal": "Put together a short launch plan for a new note-taking app",
+  "axis": "time",
+  "reason": "One pass is not enough: the result of a pass feeds the next. Sweep time and run the whole structure in revision rounds.",
+  "geometry": "tesseract",
+  "stop": "reached the round limit (2 rounds)",
+  "rounds": 2,
+  "approval_required": false,
+  "result": "## Put together a short launch plan for a new note-taking app\n\n*   **Key Direct Competitors:** [List 3-5 top competitors with their primary offerings]\n*   **Indirect/Substitute Competitors:** [List 1-2 examples of alternative solutions]\n*   **Competitor Strengths:** [Common advantages across competitors, e.g., established brand, low cost, strong distribution]\n*   **Competitor Weaknesses:** [Common disadvantages, e.g., outdated tech, poor customer service, niche focus]\n*   **Market Trends & Dynamics:** [1-2 key shifts, e.g., increasing personalization, move to subscription models, consolidation]\n*   **Pricing Strategies:** [Overview of common approaches, e.g., premium, value, freemium]\n*   **Differentiation Gaps/Opportunities:** [Areas where current offerings are lacking or where new value can be created]\n\n## draft positioning and pricing\n\nFor **[Target Customer - *needs precise definition, e.g., SMBs, specific industry professionals*]** who **[\n\n**To draft pricing, the following information must be filled in from the current gaps:**\n\n1.  **Competitor Pricing Models &\n\nThe provided context is a partial market analysis with significant gaps and placeholders, explicitly stating that information is missing to even draft pricing and positioning. A launch plan cannot be written without a defined product, target customer, positioning, and pricing strategy.\n\nPlease fill in the following critical gaps from the provided review of round 1:\n\n*   **Key Direct Competitors:** (specific names & offerings)\n*   **Indirect/Substitute Competitors:** (specific examples)\n*   **Competitor Strengths:** (concrete advantages)\n*   **Competitor Weaknesses:** (concrete disadvantages)\n*   **Market Trends & Dynamics:** (specific shifts)\n*   **Pricing Strategies:** (overview of common approaches in the market)\n*   **Differentiation Gaps/Opportunities:** (clear opportunities)\n*   **Target Customer:** (precise definition)\n*   **Competitor Pricing Models & [further details required]**\n\nOnce these details are available, the draft positioning and pricing can be completed, which are prerequisites for developing a launch plan.\n\nA launch plan cannot be reviewed because essential foundational information for drafting positioning and pricing is missing. The current context identifies critical gaps in market analysis that must be filled first:\n\n*   **Key Direct Competitors:** Specific names and their primary offerings.\n*   **Indirect/Substitute Competitors:** Specific examples of alternative solutions.\n*   **Competitor Strengths:** Concrete advantages.\n*   **Competitor Weaknesses:** Concrete disadvantages.\n*   **Market Trends & Dynamics:** Specific key shifts.\n*   **Pricing Strategies:** Overview of common approaches in the market.\n*   **Differentiation Gaps/Opportunities:** Clear areas where value can be created.\n*   **Target Customer:** Precise definition.\n*   **Competitor Pricing Models & [further details required]**\n\nUntil these details are provided, the draft positioning and pricing cannot be completed, which are prerequisites for a viable launch plan.",
+  "children": [
+    {
+      "id": "root-round",
+      "goal": "Put together a short launch plan for a new note-taking app",
+      "axis": "order",
+      "reason": "Front-to-back dependency: each step consumes the previous step's output. Sweep order and lay the steps on a line.",
+      "geometry": "line",
+      "stop": "closes when the last dependent step completes",
+      "rounds": 1,
+      "approval_required": false,
+      "result": "## Put together a short launch plan for a new note-taking app\n\n*   **Key Direct Competitors:** [List 3-5 top competitors with their primary offerings]\n*   **Indirect/Substitute Competitors:** [List 1-2 examples of alternative solutions]\n*   **Competitor Strengths:** [Common advantages across competitors, e.g., established brand, low cost, strong distribution]\n*   **Competitor Weaknesses:** [Common disadvantages, e.g., outdated tech, poor customer service, niche focus]\n*   **Market Trends & Dynamics:** [1-2 key shifts, e.g., increasing personalization, move to subscription models, consolidation]\n*   **Pricing Strategies:** [Overview of common approaches, e.g., premium, value, freemium]\n*   **Differentiation Gaps/Opportunities:** [Areas where current offerings are lacking or where new value can be created]\n\n## draft positioning and pricing\n\nFor **[Target Customer - *needs precise definition, e.g., SMBs, specific industry professionals*]** who **[\n\n**To draft pricing, the following information must be filled in from the current gaps:**\n\n1.  **Competitor Pricing Models &\n\nThe provided context is a partial market analysis with significant gaps and placeholders, explicitly stating that information is missing to even draft pricing and positioning. A launch plan cannot be written without a defined product, target customer, positioning, and pricing strategy.\n\nPlease fill in the following critical gaps from the provided review of round 1:\n\n*   **Key Direct Competitors:** (specific names & offerings)\n*   **Indirect/Substitute Competitors:** (specific examples)\n*   **Competitor Strengths:** (concrete advantages)\n*   **Competitor Weaknesses:** (concrete disadvantages)\n*   **Market Trends & Dynamics:** (specific shifts)\n*   **Pricing Strategies:** (overview of common approaches in the market)\n*   **Differentiation Gaps/Opportunities:** (clear opportunities)\n*   **Target Customer:** (precise definition)\n*   **Competitor Pricing Models & [further details required]**\n\nOnce these details are available, the draft positioning and pricing can be completed, which are prerequisites for developing a launch plan.\n\nA launch plan cannot be reviewed because essential foundational information for drafting positioning and pricing is missing. The current context identifies critical gaps in market analysis that must be filled first:\n\n*   **Key Direct Competitors:** Specific names and their primary offerings.\n*   **Indirect/Substitute Competitors:** Specific examples of alternative solutions.\n*   **Competitor Strengths:** Concrete advantages.\n*   **Competitor Weaknesses:** Concrete disadvantages.\n*   **Market Trends & Dynamics:** Specific key shifts.\n*   **Pricing Strategies:** Overview of common approaches in the market.\n*   **Differentiation Gaps/Opportunities:** Clear areas where value can be created.\n*   **Target Customer:** Precise definition.\n*   **Competitor Pricing Models & [further details required]**\n\nUntil these details are provided, the draft positioning and pricing cannot be completed, which are prerequisites for a viable launch plan.",
+      "children": [
+        {
+          "id": "research-the-competitive-landscape",
+          "goal": "research the competitive landscape",
+          "axis": "leaf",
+          "reason": "Small enough to handle in one pass; leaving it a leaf is the honest decision.",
+          "geometry": "point",
+          "stop": null,
+          "rounds": 1,
+          "approval_required": false,
+          "result": "*   **Key Direct Competitors:** [List 3-5 top competitors with their primary offerings]\n*   **Indirect/Substitute Competitors:** [List 1-2 examples of alternative solutions]\n*   **Competitor Strengths:** [Common advantages across competitors, e.g., established brand, low cost, strong distribution]\n*   **Competitor Weaknesses:** [Common disadvantages, e.g., outdated tech, poor customer service, niche focus]\n*   **Market Trends & Dynamics:** [1-2 key shifts, e.g., increasing personalization, move to subscription models, consolidation]\n*   **Pricing Strategies:** [Overview of common approaches, e.g., premium, value, freemium]\n*   **Differentiation Gaps/Opportunities:** [Areas where current offerings are lacking or where new value can be created]",
+          "children": []
+        },
+        {
+          "id": "draft-positioning-and-pricing",
+          "goal": "draft positioning and pricing",
+          "axis": "breadth",
+          "reason": "The branches are independent and do not wait on one another. Sweep breadth and fan them out in parallel.",
+          "geometry": "plane",
+          "stop": "2 branches, under max_breadth 6",
+          "rounds": 1,
+          "approval_required": false,
+          "result": "## draft positioning and pricing\n\nFor **[Target Customer - *needs precise definition, e.g., SMBs, specific industry professionals*]** who **[\n\n**To draft pricing, the following information must be filled in from the current gaps:**\n\n1.  **Competitor Pricing Models &",
+          "children": [
+            {
+              "id": "draft-the-positioning",
+              "goal": "draft the positioning",
+              "axis": "leaf",
+              "reason": "Small enough to handle in one pass; leaving it a leaf is the honest decision.",
+              "geometry": "point",
+              "stop": null,
+              "rounds": 1,
+              "approval_required": false,
+              "result": "For **[Target Customer - *needs precise definition, e.g., SMBs, specific industry professionals*]** who **[",
+              "children": []
+            },
+            {
+              "id": "draft-the-pricing",
+              "goal": "draft the pricing",
+              "axis": "leaf",
+              "reason": "Small enough to handle in one pass; leaving it a leaf is the honest decision.",
+              "geometry": "point",
+              "stop": null,
+              "rounds": 1,
+              "approval_required": false,
+              "result": "**To draft pricing, the following information must be filled in from the current gaps:**\n\n1.  **Competitor Pricing Models &",
+              "children": []
+            }
+          ]
+        },
+        {
+          "id": "write-up-the-launch-plan",
+          "goal": "write up the launch plan",
+          "axis": "leaf",
+          "reason": "Small enough to handle in one pass; leaving it a leaf is the honest decision.",
+          "geometry": "point",
+          "stop": null,
+          "rounds": 1,
+          "approval_required": false,
+          "result": "The provided context is a partial market analysis with significant gaps and placeholders, explicitly stating that information is missing to even draft pricing and positioning. A launch plan cannot be written without a defined product, target customer, positioning, and pricing strategy.\n\nPlease fill in the following critical gaps from the provided review of round 1:\n\n*   **Key Direct Competitors:** (specific names & offerings)\n*   **Indirect/Substitute Competitors:** (specific examples)\n*   **Competitor Strengths:** (concrete advantages)\n*   **Competitor Weaknesses:** (concrete disadvantages)\n*   **Market Trends & Dynamics:** (specific shifts)\n*   **Pricing Strategies:** (overview of common approaches in the market)\n*   **Differentiation Gaps/Opportunities:** (clear opportunities)\n*   **Target Customer:** (precise definition)\n*   **Competitor Pricing Models & [further details required]**\n\nOnce these details are available, the draft positioning and pricing can be completed, which are prerequisites for developing a launch plan.",
+          "children": []
+        },
+        {
+          "id": "review-the-launch-plan",
+          "goal": "review the launch plan",
+          "axis": "leaf",
+          "reason": "Small enough to handle in one pass; leaving it a leaf is the honest decision.",
+          "geometry": "point",
+          "stop": null,
+          "rounds": 1,
+          "approval_required": false,
+          "result": "A launch plan cannot be reviewed because essential foundational information for drafting positioning and pricing is missing. The current context identifies critical gaps in market analysis that must be filled first:\n\n*   **Key Direct Competitors:** Specific names and their primary offerings.\n*   **Indirect/Substitute Competitors:** Specific examples of alternative solutions.\n*   **Competitor Strengths:** Concrete advantages.\n*   **Competitor Weaknesses:** Concrete disadvantages.\n*   **Market Trends & Dynamics:** Specific key shifts.\n*   **Pricing Strategies:** Overview of common approaches in the market.\n*   **Differentiation Gaps/Opportunities:** Clear areas where value can be created.\n*   **Target Customer:** Precise definition.\n*   **Competitor Pricing Models & [further details required]**\n\nUntil these details are provided, the draft positioning and pricing cannot be completed, which are prerequisites for a viable launch plan.",
+          "children": []
+        }
+      ]
+    }
+  ]
+}

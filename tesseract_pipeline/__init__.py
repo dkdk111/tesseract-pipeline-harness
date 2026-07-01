@@ -23,8 +23,9 @@ from .executor import Executor
 from .worker import Worker, SimulatedWorker
 from .infer import infer_task, HeuristicPlanner
 from .verify import verify_structure
+from .llm import LLMPlanner, LLMWorker, call_model
 
-__version__ = "0.2.0"
+__version__ = "0.3.0"
 
 __all__ = [
     "Axis",
@@ -39,5 +40,8 @@ __all__ = [
     "infer_task",
     "HeuristicPlanner",
     "verify_structure",
+    "LLMPlanner",
+    "LLMWorker",
+    "call_model",
     "__version__",
 ]

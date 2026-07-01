@@ -103,10 +103,26 @@ then write the brief, and iterate twice."
 That one sentence opens all four axes (time from "iterate twice", order from "then",
 breadth from the lists, depth from "break down into"), with nothing declared. The
 inferer is a deterministic heuristic that recognizes common prose patterns and is
-intentionally limited; for open-domain goals, a model does the inference (see
-[`examples/llm_planner_example.py`](examples/llm_planner_example.py)). This is the
-honest shape of the claim: a real code path from raw text to a self-designed
-structure, clear about where the heuristic ends and a model begins.
+intentionally limited.
+
+For open-domain goals, a live model does the inference. Add `--llm` and the harness
+uses a real model for both the structure inference and the leaf work:
+
+```bash
+export TESSERACT_LLM_PROVIDER=anthropic     # or gemini, openai
+export ANTHROPIC_API_KEY=...                 # the matching provider key
+python -m tesseract_pipeline think --llm "Draft a launch plan, research first, \
+then positioning and pricing in parallel, then iterate until tight."
+```
+
+The model reads the raw goal, proposes the nature, and the same engine opens the
+axes and runs them. A captured live run ships in
+[`examples/08_llm_freeform/`](examples/08_llm_freeform) (the provider is selectable;
+the default is Anthropic). This is the honest shape of the claim: a
+real code path from raw text to a self-designed structure, clear about where the
+keyless heuristic ends and a live model begins. Implementation:
+[`tesseract_pipeline/llm.py`](tesseract_pipeline/llm.py) (standard library only, no
+SDK).
 
 ## Demo gallery: many domains, many shapes
 
@@ -150,11 +166,11 @@ python -m tesseract_pipeline think "a goal in words" # infer the structure, then
 python -m tesseract_pipeline run my_task.json --strict  # refuse a structure that fails verify
 ```
 
-To make the leaves real, swap the default simulator for a model
-([`examples/llm_worker_example.py`](examples/llm_worker_example.py)); to make the
-structure inference real, swap the heuristic for a model
-([`examples/llm_planner_example.py`](examples/llm_planner_example.py)). Only those
-seams change; the executor and the box are untouched.
+To make it real, pass `--llm` (or use `LLMPlanner` / `LLMWorker` from
+[`tesseract_pipeline/llm.py`](tesseract_pipeline/llm.py)): a live model does the
+structure inference and the leaf work. Pick a provider with
+`TESSERACT_LLM_PROVIDER` (anthropic, gemini, or openai; each reads its own key from
+the environment). Only those seams change; the executor and the box are untouched.
 
 ### Agent mode (Claude Code and other coding agents)
 
@@ -235,16 +251,17 @@ harness/                   The ontology, shared by both modes.
   02_the_box.md              Control: boundary, stop, verify, approval gate.
   03_trace_protocol.md       How a run is recorded.
   box.config.md              Prose docs for box.config.json.
-tesseract_pipeline/        The engine (standard library only).
+tesseract_pipeline/        The engine (standard library only, no SDK).
   infer.py                   Free-form goal -> declared nature (heuristic self-design).
+  llm.py                     Live-model self-design and leaf work (anthropic/gemini/openai).
   planner.py                 Nature -> four-axis structure.
   verify.py                  The Verify wall: re-examine the structure before running.
   executor.py                Real order, breadth, depth, and time execution.
   worker.py                  Pluggable leaf work; deterministic simulator default.
   box.py, node.py, axes.py   The box, the node tree, the axes.
   trace.py, render.py, cli.py
-examples/                  Seven demos across domains, each with generated traces,
-                           plus LLM worker and planner sketches.
+examples/                  Seven deterministic demos, plus 08_llm_freeform, a
+                           captured live-model run.
 templates/                 Blank task and trace templates.
 tests/                     Standard-library unittest suite.
 tools/render_tesseract.py  Back-compatible renderer shim.

@@ -77,9 +77,12 @@ There are two ways the engine gets a task's nature, and it is worth being precis
   limited; unusual phrasing falls back to fewer axes.
 
 Open-domain, robust inference from any goal is the job of a model, not a regex. That
-seam is explicit: `LLMPlanner` (infer the structure) and `LLMWorker` (do the leaf
-work), both keyless sketches. Not hiding where the heuristic ends and a model begins
-is itself faithful to the book: a proposed structure is a hypothesis, not a guarantee,
+seam is shipped and runnable, not just described: `tesseract_pipeline/llm.py` provides
+`LLMPlanner` (infer the structure from a raw goal) and `LLMWorker` (do the leaf work),
+selectable across providers (anthropic, gemini, openai) over plain urllib, no SDK. Add
+`--llm` to `think` or `run` and a live model does both. A captured live run ships in
+`examples/08_llm_freeform/`. Not hiding where the heuristic ends and a model begins is
+itself faithful to the book: a proposed structure is a hypothesis, not a guarantee,
 which is exactly why the Verify wall re-examines it before execution.
 
 ## File map
@@ -88,8 +91,8 @@ which is exactly why the Verify wall re-examines it before execution.
 AGENTS.md / CLAUDE.md   Meta-instructions (operating law). The recursive self-expansion rule.
 box.config.json         The box: the walls a human holds.
 harness/                The ontology, shared by both modes.
-tesseract_pipeline/     The engine (infer, planner, verify, executor, worker, box, node, axes, trace, render, cli).
-examples/               Seven demos across domains, with generated traces.
+tesseract_pipeline/     The engine (infer, llm, planner, verify, executor, worker, box, node, axes, trace, render, cli).
+examples/               Seven deterministic demos + 08_llm_freeform (a captured live-model run).
 ```
 
 ## How a run flows

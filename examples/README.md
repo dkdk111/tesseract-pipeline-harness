@@ -53,6 +53,15 @@ line, an honest self-design leaves it a line.
   structure derived from raw text, not hand-drawn. Run it with
   `python -m tesseract_pipeline think --file examples/07_freeform_inference/goal.txt`.
 
+## A live-model run (separate from the gallery)
+
+`08_llm_freeform` is produced by a real model, end to end, from a free-form goal:
+both the structure inference and the leaf work are the model's, not the heuristic and
+the simulator. The model opened order, breadth, and time, and correctly did not open
+depth (it judged nothing oversized). It is non-deterministic and needs a key, so it is
+committed as a reference and is not part of the deterministic gallery or CI. See
+[`08_llm_freeform/README.md`](08_llm_freeform/README.md).
+
 ## Each demo's files
 
 - `task.json`: the input. It declares the work's nature (and, for the gallery, a
@@ -67,5 +76,6 @@ line, an honest self-design leaves it a line.
 
 ## Make the leaves real
 
-Swap the deterministic simulator for a model. Only the worker changes; the planner,
-the executor, and the box stay identical. See `llm_worker_example.py`.
+Swap the deterministic simulator for a live model with `--llm` (or `LLMWorker` from
+`tesseract_pipeline/llm.py`). Only the worker changes; the planner, the executor, and
+the box stay identical. See `08_llm_freeform/` for a captured live run.

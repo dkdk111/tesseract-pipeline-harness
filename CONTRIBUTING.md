@@ -31,8 +31,8 @@ very welcome.
 ## What is easy to contribute
 
 - New example tasks under `examples/` that exercise the axes in a different shape.
-- A real `Worker` implementation for a model provider (kept keyless in the repo; see
-  `examples/llm_worker_example.py`).
+- A new provider for the live-model path (`tesseract_pipeline/llm.py`), or a real
+  `Worker`/`Planner` subclass for one.
 - Docs and clarity fixes.
 
 ## Pull requests

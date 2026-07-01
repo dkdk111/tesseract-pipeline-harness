@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "tesseract-pipeline"
-version = "0.2.0"
+version = "0.3.0"
 description = "A working harness that self-designs a task along four orthogonal axes (order, breadth, depth, time), inside a human-held box, and traces the result."
 readme = "README.md"
 requires-python = ">=3.9"

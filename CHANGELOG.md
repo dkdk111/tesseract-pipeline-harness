@@ -4,6 +4,25 @@ All notable changes to this project are documented here. The format follows
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and the project aims to
 follow [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.3.0] - 2026-07-01
+
+### Added
+
+- Live-model path: `tesseract_pipeline/llm.py` provides `LLMPlanner` (infer a
+  structure from a raw goal) and `LLMWorker` (do real leaf work), selectable across
+  providers (anthropic, gemini, openai) over the standard library only, no SDK. A
+  `--llm` flag on `think` and `run` uses it; the provider is chosen with
+  `TESSERACT_LLM_PROVIDER` and each provider reads its own key from the environment.
+- `examples/08_llm_freeform/`: a captured live-model run that infers structure from
+  prose and does real leaf work end to end. Kept out of the
+  deterministic gallery and CI because it is non-deterministic and needs a key.
+
+### Changed
+
+- Output/trace note now distinguishes a live-model run from a simulated one.
+- Removed the two placeholder LLM sketches under `examples/`, superseded by the real
+  `llm.py` implementation.
+
 ## [0.2.0] - 2026-07-01
 
 ### Added

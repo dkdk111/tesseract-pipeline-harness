@@ -8,8 +8,9 @@ by default and with a real model when you want one.
   model, no network, no API keys. This is the "complete simulation" the repo ships:
   the four axes and the sweep are real and really executed; only the leaf content is
   synthetic.
-- To make leaf work real, subclass ``Worker`` and call your model in ``run``. See
-  ``examples/llm_worker_example.py`` for a sketch (no keys committed).
+- To make leaf work real, use ``LLMWorker`` from ``tesseract_pipeline.llm`` (a live
+  model, provider-selectable), or subclass ``Worker`` and call your own model in
+  ``run``.
 """
 
 from __future__ import annotations

@@ -64,7 +64,8 @@ def _load_task(path: str) -> dict:
         return json.load(fh)
 
 
-def _run_task(task: dict, box: Box, out_dir: str, quiet: bool = False, strict: bool = False) -> dict:
+def _run_task(task: dict, box: Box, out_dir: str, quiet: bool = False, strict: bool = False,
+              worker=None) -> dict:
     root = plan(task, box)
 
     # The Verify wall: re-examine the structure before executing it.
@@ -81,8 +82,9 @@ def _run_task(task: dict, box: Box, out_dir: str, quiet: bool = False, strict: b
         print("strict mode: refusing to execute a structure that failed verify.", file=sys.stderr)
         return {"verify_failed": issues}
 
-    Executor(SimulatedWorker()).run(root)
-    info = write_trace(root, task.get("goal", ""), box, out_dir, issues=issues)
+    simulated = worker is None
+    Executor(worker or SimulatedWorker()).run(root)
+    info = write_trace(root, task.get("goal", ""), box, out_dir, issues=issues, simulated=simulated)
     if not quiet:
         print(render_tree(root.to_dict()))
         print(f"trace written to: {out_dir}")
@@ -103,9 +105,14 @@ def _cmd_demo(args: argparse.Namespace) -> int:
 def _cmd_run(args: argparse.Namespace) -> int:
     task = _load_task(args.task)
     box = Box.load(_box_path(args.box))
+    worker = None
+    if getattr(args, "llm", False):
+        from .llm import LLMWorker
+
+        worker = LLMWorker()
     default_out = os.path.join(_REPO_ROOT, ".tesseract", _slug(task.get("goal", "run")))
     out_dir = args.out or default_out
-    _run_task(task, box, out_dir, strict=getattr(args, "strict", False))
+    _run_task(task, box, out_dir, strict=getattr(args, "strict", False), worker=worker)
     return 0
 
 
@@ -187,14 +194,22 @@ def _cmd_think(args: argparse.Namespace) -> int:
     if not text.strip():
         print("error: give a free-form goal, or --file", file=sys.stderr)
         return 2
-    task = infer_task(text)
     box = Box.load(_box_path(args.box))
+    worker = None
+    if getattr(args, "llm", False):
+        from .llm import LLMPlanner, LLMWorker
+
+        task = LLMPlanner().infer(text)
+        worker = LLMWorker()
+        header = "Inferred a structure from a free-form goal with a live model (no declaration):"
+    else:
+        task = infer_task(text)
+        header = "Inferred a structure from a free-form goal, with no axis declared\n(heuristic inference, no model):"
     out_dir = args.out or os.path.join(_REPO_ROOT, ".tesseract", _slug(task.get("goal", "think")))
-    print("Inferred a structure from a free-form goal, with no axis declared")
-    print("(heuristic inference, no model):")
+    print(header)
     print(f'  "{text.strip()}"')
     print()
-    _run_task(task, box, out_dir, strict=getattr(args, "strict", False))
+    _run_task(task, box, out_dir, strict=getattr(args, "strict", False), worker=worker)
     return 0
 
 
@@ -248,6 +263,7 @@ def build_parser() -> argparse.ArgumentParser:
     p_run.add_argument("--out", help="output directory for the trace")
     p_run.add_argument("--box", help="path to box.config.json")
     p_run.add_argument("--strict", action="store_true", help="refuse to execute if verify finds issues")
+    p_run.add_argument("--llm", action="store_true", help="do leaf work with a live model (needs ANTHROPIC_API_KEY)")
     p_run.set_defaults(func=_cmd_run)
 
     p_think = sub.add_parser(
@@ -258,6 +274,7 @@ def build_parser() -> argparse.ArgumentParser:
     p_think.add_argument("--out", help="output directory for the trace")
     p_think.add_argument("--box", help="path to box.config.json")
     p_think.add_argument("--strict", action="store_true", help="refuse to execute if verify finds issues")
+    p_think.add_argument("--llm", action="store_true", help="infer structure and do leaf work with a live model (needs ANTHROPIC_API_KEY)")
     p_think.set_defaults(func=_cmd_think)
 
     p_gallery = sub.add_parser("gallery", help="run every example and print a comparison table")
