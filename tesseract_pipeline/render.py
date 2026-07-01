@@ -103,6 +103,10 @@ def render_tree(root: dict) -> str:
         out.append("  No axis opened: the whole task was a single leaf.")
         out.append("  For a simple goal, one line is the honest structure.")
     out.append("")
+    out.append("Note: the structure and its execution are real. If a trace was produced by")
+    out.append("the default simulator, its leaf content is placeholder text, not a model's")
+    out.append("work. Attach a Worker/LLMWorker for real leaves.")
+    out.append("")
     return "\n".join(out)
 
 

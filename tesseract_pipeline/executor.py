@@ -83,6 +83,10 @@ class Executor:
 
     # -- Time: iterative rounds -------------------------------------------------
     def _run_time(self, node: Node, context: str) -> str:
+        # Two real stop conditions, both reachable: convergence (a round adds no
+        # improvement over the last) and the round limit. A round's review is fed
+        # forward into the next round's context, so later rounds build on earlier
+        # ones until they stop improving.
         body = node.children[0]
         target = max(1, node.rounds)
         prev_result = ""
@@ -90,28 +94,27 @@ class Executor:
         review = ""
         rounds_run = 0
         final_body = None
-        stop = f"stopped after {target} rounds (reached target rounds)"
+        stop = None
 
         for i in range(1, target + 1):
-            rounds_run = i
             fresh = body.clone()
             round_ctx = (context + "\n\n" + review).strip()
             result = self.run(fresh, round_ctx)
             score = _score(result)
-            final_body = fresh
 
-            if prev_score is not None and score == prev_score:
-                stop = f"stopped after round {i} (dry round: no improvement over the last)"
+            if prev_score is not None and score <= prev_score:
+                # This round added nothing over the last: the loop has converged.
+                stop = f"converged after round {rounds_run} (round {i} added no improvement)"
                 break
-            if _converged(result):
-                stop = f"stopped after round {i} (converged on the goal)"
-                prev_result = result
-                break
+
+            rounds_run = i
+            final_body = fresh
             prev_result = result
             prev_score = score
             review = f"a review of round {i} that flags gaps to fill in the next pass"
-        else:
-            stop = f"stopped after {rounds_run} rounds (reached max rounds for this run)"
+
+        if stop is None:
+            stop = f"reached the round limit ({target} rounds)"
 
         node.children = [final_body] if final_body is not None else node.children
         node.rounds = rounds_run
@@ -128,8 +131,3 @@ def _assemble(goal: str, parts: List[str]) -> str:
 def _score(result: str) -> int:
     """A deterministic proxy for how complete a result is."""
     return len(result)
-
-
-def _converged(result: str) -> bool:
-    """Deterministic convergence signal. Kept simple and honest for the demo."""
-    return "no gaps remain" in result.lower()

@@ -70,24 +70,48 @@ Output ends with:
 
 ## What actually happens on a run
 
-1. Plan (self-design). The planner reads the task's declared nature and asks four
-   questions in order: is one pass enough (else Time), is there front-to-back
-   dependency (Order), do independent branches split off (Breadth), is a part too big
-   to handle flat (Depth). The first that fits, and the box allows, opens. A simple
-   task stays a single leaf.
-2. Execute. The executor runs the structure for real: Order threads each step's
+1. Plan (self-design). The planner reads the task's nature and asks four questions in
+   order: is one pass enough (else Time), is there front-to-back dependency (Order),
+   do independent branches split off (Breadth), is a part too big to handle flat
+   (Depth). The first that fits, and the box allows, opens. A simple task stays a
+   single leaf. The nature can be declared (a `task.json`) or inferred from a
+   free-form goal (see `think`, below).
+2. Verify. Before executing, the structure is re-examined adversarially for
+   degenerate or unjustified shapes (a sweep with one branch, a single-round time
+   loop, a leaf with children). This is the third control wall, in code
+   (`tesseract_pipeline/verify.py`). Use `--strict` to refuse a failing structure.
+3. Execute. The executor runs the structure for real: Order threads each step's
    output into the next, Breadth runs branches concurrently, Depth recurses, and Time
-   re-runs the whole subtree in rounds until it stops.
-3. Trace. The harness writes `tesseract.json` (the structure and results), `trace.md`
-   (the human-readable self-design record), and `output.md` (the assembled result).
-   A run that leaves no trace has demonstrated nothing.
+   re-runs the whole subtree in rounds until it converges or hits the round limit.
+4. Trace. The harness writes `tesseract.json` (the structure and results), `trace.md`
+   (the self-design record, including the verify result), and `output.md` (the
+   assembled result). A run that leaves no trace has demonstrated nothing.
 
 See a full recorded run in [`examples/01_market_brief/`](examples/01_market_brief).
+
+## Self-design from a free-form goal
+
+The planner reads a task's nature; that nature can be inferred from plain words with
+no axis declared. Give it a sentence and watch it build a tesseract:
+
+```bash
+python -m tesseract_pipeline think "Research the space, then gather notes on Notion, \
+Obsidian and Roam, then break the market down into pricing, features and positioning, \
+then write the brief, and iterate twice."
+```
+
+That one sentence opens all four axes (time from "iterate twice", order from "then",
+breadth from the lists, depth from "break down into"), with nothing declared. The
+inferer is a deterministic heuristic that recognizes common prose patterns and is
+intentionally limited; for open-domain goals, a model does the inference (see
+[`examples/llm_planner_example.py`](examples/llm_planner_example.py)). This is the
+honest shape of the claim: a real code path from raw text to a self-designed
+structure, clear about where the heuristic ends and a model begins.
 
 ## Demo gallery: many domains, many shapes
 
 The harness is convincing from more than one angle only if it behaves differently on
-different work. Six demos, each a different domain and a different structural
+different work. Seven demos, each a different domain and a different structural
 signature, ship with the repo. Run them all at once:
 
     python -m tesseract_pipeline gallery
@@ -100,6 +124,7 @@ example                domain         O B D T  leaf  perspective
 04_book_chapter        writing        O B . T    5   time wrapping order and breadth (a revision loop)
 05_bulk_translation    localization   . B . .    6   breadth only, and it hits the box's max_breadth wall
 06_quick_fix           maintenance    . . . .    1   a single leaf: the harness refuses to invent dimensions
+07_freeform_inference  free-form      O B D T    8   inferred from a plain sentence, no declaration
 ```
 
 (O = order, B = breadth, D = depth, T = time; a dot means the axis was not opened.)
@@ -119,13 +144,17 @@ Describe a task's nature in a small JSON file and run it. The task declares
 *properties* of the work, not axes; the planner derives the axes.
 
 ```bash
-python -m tesseract_pipeline new my_task.json     # scaffold a template
-python -m tesseract_pipeline run my_task.json      # plan, execute, trace
+python -m tesseract_pipeline new my_task.json      # scaffold a template
+python -m tesseract_pipeline run my_task.json       # plan, verify, execute, trace
+python -m tesseract_pipeline think "a goal in words" # infer the structure, then run it
+python -m tesseract_pipeline run my_task.json --strict  # refuse a structure that fails verify
 ```
 
-To make the leaves real, swap the default simulator for a model. Only the worker
-changes; the planner, the executor, and the box are untouched. See
-[`examples/llm_worker_example.py`](examples/llm_worker_example.py).
+To make the leaves real, swap the default simulator for a model
+([`examples/llm_worker_example.py`](examples/llm_worker_example.py)); to make the
+structure inference real, swap the heuristic for a model
+([`examples/llm_planner_example.py`](examples/llm_planner_example.py)). Only those
+seams change; the executor and the box are untouched.
 
 ### Agent mode (Claude Code and other coding agents)
 
@@ -207,13 +236,15 @@ harness/                   The ontology, shared by both modes.
   03_trace_protocol.md       How a run is recorded.
   box.config.md              Prose docs for box.config.json.
 tesseract_pipeline/        The engine (standard library only).
-  planner.py                 Self-design: nature -> four-axis structure.
+  infer.py                   Free-form goal -> declared nature (heuristic self-design).
+  planner.py                 Nature -> four-axis structure.
+  verify.py                  The Verify wall: re-examine the structure before running.
   executor.py                Real order, breadth, depth, and time execution.
   worker.py                  Pluggable leaf work; deterministic simulator default.
   box.py, node.py, axes.py   The box, the node tree, the axes.
   trace.py, render.py, cli.py
-examples/                  Six demos across domains, each with generated traces,
-                           plus an LLM-worker sketch.
+examples/                  Seven demos across domains, each with generated traces,
+                           plus LLM worker and planner sketches.
 templates/                 Blank task and trace templates.
 tests/                     Standard-library unittest suite.
 tools/render_tesseract.py  Back-compatible renderer shim.

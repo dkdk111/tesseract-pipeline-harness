@@ -65,14 +65,27 @@ class ExecutorTests(unittest.TestCase):
         result = Executor(worker).run(seed)
         self.assertIn("[part]", result)
 
-    def test_time_runs_multiple_rounds(self):
-        worker = RecordingWorker()
+    def test_time_runs_to_limit_when_each_round_improves(self):
+        # A worker whose output grows with context keeps improving, so the loop runs
+        # to the round limit.
+        class GrowingWorker(Worker):
+            def run(self, goal, context=""):
+                return f"[{goal}]" + ("+" * (len(context) + 1))
+
         body = Node(id="body", goal="draft", axis=Axis.LEAF)
         node = Node(id="loop", goal="iterate", axis=Axis.TIME, rounds=2, children=[body])
-        Executor(worker).run(node)
+        Executor(GrowingWorker()).run(node)
         self.assertEqual(node.rounds, 2)
-        self.assertIsNotNone(node.result)
-        self.assertIn("round", node.stop)
+        self.assertIn("round limit", node.stop)
+
+    def test_time_converges_when_no_improvement(self):
+        # A worker whose output does not change across rounds converges immediately.
+        worker = RecordingWorker()
+        body = Node(id="body", goal="draft", axis=Axis.LEAF)
+        node = Node(id="loop", goal="iterate", axis=Axis.TIME, rounds=3, children=[body])
+        Executor(worker).run(node)
+        self.assertEqual(node.rounds, 1)
+        self.assertIn("converged", node.stop)
 
 
 if __name__ == "__main__":

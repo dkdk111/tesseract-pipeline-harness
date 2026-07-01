@@ -65,19 +65,22 @@ with no model and no keys.
 
 ### The honest boundary
 
-One thing must be explicit. In engine mode the planner reads the work's nature from a
-*declared* form (`task.json`): you declare that the work is iterative, or dependent,
-or splits into independent branches, or is too big to handle flat, and the planner
-converts that into axes. So you declare the nature, and the engine decides the
-structure. This is a faithful, if compact, form of self-design. But inferring the
-nature itself from a raw, free-form goal is not something deterministic code does; it
-needs a live model. That is exactly agent mode, or the engine with its worker swapped
-for a real model (`LLMWorker`).
+There are two ways the engine gets a task's nature, and it is worth being precise.
 
-In short: the meta-instructions for self-expansion are present (`AGENTS.md`,
-`harness/`), and the recursive expansion runs as code. The final step, inferring
-nature from a raw goal, is completed when a model is attached. Not hiding that seam is
-itself faithful to the book (a proposed structure is a hypothesis, not a guarantee).
+- Declared: a `task.json` states that the work is iterative, or dependent, or splits
+  into independent branches, or is too big to handle flat, and the planner converts
+  that into axes. You declare the nature; the engine decides the structure.
+- Inferred: `infer.py` (the `think` command, `HeuristicPlanner`) reads a plain-English
+  goal and infers that nature with no axis declared, then hands it to the planner. So
+  there is a real, keyless code path from raw text to a self-designed structure. It is
+  a deterministic heuristic that recognizes common prose patterns and is intentionally
+  limited; unusual phrasing falls back to fewer axes.
+
+Open-domain, robust inference from any goal is the job of a model, not a regex. That
+seam is explicit: `LLMPlanner` (infer the structure) and `LLMWorker` (do the leaf
+work), both keyless sketches. Not hiding where the heuristic ends and a model begins
+is itself faithful to the book: a proposed structure is a hypothesis, not a guarantee,
+which is exactly why the Verify wall re-examines it before execution.
 
 ## File map
 
@@ -85,18 +88,22 @@ itself faithful to the book (a proposed structure is a hypothesis, not a guarant
 AGENTS.md / CLAUDE.md   Meta-instructions (operating law). The recursive self-expansion rule.
 box.config.json         The box: the walls a human holds.
 harness/                The ontology, shared by both modes.
-tesseract_pipeline/     The engine (planner, executor, worker, box, node, axes, trace, render, cli).
-examples/               Six demos across domains, with generated traces.
+tesseract_pipeline/     The engine (infer, planner, verify, executor, worker, box, node, axes, trace, render, cli).
+examples/               Seven demos across domains, with generated traces.
 ```
 
 ## How a run flows
 
-1. Plan (self-design): at each node, ask the four questions; open the first fitting,
-   allowed axis, else leaf; recurse into each child.
-2. Execute: order threads results forward, breadth runs concurrently, depth recurses,
-   time iterates in rounds until a stop condition fires.
-3. Trace: write `tesseract.json`, `trace.md`, and `output.md`. No trace, no
-   demonstration.
+1. Plan (self-design): the nature is declared or inferred from a free-form goal; at
+   each node, ask the four questions; open the first fitting, allowed axis, else leaf;
+   recurse into each child.
+2. Verify: re-examine the structure adversarially (degenerate sweeps, single-round
+   time loops, unjustified nodes). The third control wall, in code. `--strict` refuses
+   a failing structure.
+3. Execute: order threads results forward, breadth runs concurrently, depth recurses,
+   time iterates in rounds until it converges or hits the round limit.
+4. Trace: write `tesseract.json`, `trace.md` (including the verify result), and
+   `output.md`. No trace, no demonstration.
 
 ## The gallery: many domains, many shapes
 
@@ -108,6 +115,7 @@ examples/               Six demos across domains, with generated traces.
 | 04 book_chapter | writing | order, breadth, time | a revision loop (the book's self-example) |
 | 05 bulk_translation | localization | breadth | hits the max_breadth wall (surplus queued) |
 | 06 quick_fix | maintenance | none (a leaf) | restraint: a one-line job stays a line |
+| 07 freeform_inference | free-form | order, breadth, depth, time | inferred from a plain sentence, no declaration |
 
 The spread is the argument: the harness opens exactly the axes the work needs, and no
 more. Run `python -m tesseract_pipeline gallery` to see them side by side.

@@ -1,0 +1,148 @@
+{
+  "id": "root",
+  "goal": "Research the space, then gather notes on Notion, Obsidian and Roam, then break the market down into pricing, features and positioning, then write the brief, and iterate twice",
+  "axis": "time",
+  "reason": "One pass is not enough: the result of a pass feeds the next. Sweep time and run the whole structure in revision rounds.",
+  "geometry": "tesseract",
+  "stop": "reached the round limit (2 rounds)",
+  "rounds": 2,
+  "approval_required": false,
+  "result": "## Research the space, then gather notes on Notion, Obsidian and Roam, then break the market down into pricing, features and positioning, then write the brief, and iterate twice\n\n### Research the space\n- Key points gathered and organized for this goal.\n- Findings are consistent with the brief's scope.\n- Key points gathered and organized for this goal.\n- (revised in light of: a review of round 1 that flags gaps to fill in the next pass)\n\n## gather notes on Notion, Obsidian and Roam\n\n### Notion\n- Positioned as an all-in-one workspace: docs, wikis, projects, and databases.\n- Pricing spans a free personal tier up to business and enterprise seats.\n- Breadth is the selling point and the risk: powerful, but a steep first hour.\n- (revised in light of: a review of round 1 that flags gaps to fill in the next pass)\n\n### Obsidian\n- Local-first Markdown vault with a strong plugin ecosystem.\n- Free for personal use; paid sync and publish add-ons.\n- Owns the power-user, own-your-data niche.\n- (revised in light of: a review of round 1 that flags gaps to fill in the next pass)\n\n### Roam\n- Bidirectional links and the daily-notes graph as the core loop.\n- Premium positioning with a flat subscription.\n- Defined the networked-thought category, now contested.\n- (revised in light of: a review of round 1 that flags gaps to fill in the next pass)\n\n## break the market down into pricing, features and positioning\n\n### Pricing\n- Free tiers are the funnel; value gates sit at team and sync features.\n- Per-seat pricing dominates; flat plans read as premium.\n- (revised in light of: a review of round 1 that flags gaps to fill in the next pass)\n\n### Features\n- Databases, links, and sync are the axes of differentiation.\n- Extensibility (plugins, API) separates power tools from simple notes.\n- (revised in light of: a review of round 1 that flags gaps to fill in the next pass)\n\n### Positioning\n- The field splits into all-in-one, own-your-data, and networked-thought.\n- Messaging clarity, not feature count, tends to decide adoption.\n- (revised in light of: a review of round 1 that flags gaps to fill in the next pass)\n\n### Write the brief\n- Key points gathered and organized for this goal.\n- Findings are consistent with the brief's scope.\n- Key points gathered and organized for this goal.\n- (revised in light of: a review of round 1 that flags gaps to fill in the next pass)",
+  "children": [
+    {
+      "id": "root-round",
+      "goal": "Research the space, then gather notes on Notion, Obsidian and Roam, then break the market down into pricing, features and positioning, then write the brief, and iterate twice",
+      "axis": "order",
+      "reason": "Front-to-back dependency: each step consumes the previous step's output. Sweep order and lay the steps on a line.",
+      "geometry": "line",
+      "stop": "closes when the last dependent step completes",
+      "rounds": 1,
+      "approval_required": false,
+      "result": "## Research the space, then gather notes on Notion, Obsidian and Roam, then break the market down into pricing, features and positioning, then write the brief, and iterate twice\n\n### Research the space\n- Key points gathered and organized for this goal.\n- Findings are consistent with the brief's scope.\n- Key points gathered and organized for this goal.\n- (revised in light of: a review of round 1 that flags gaps to fill in the next pass)\n\n## gather notes on Notion, Obsidian and Roam\n\n### Notion\n- Positioned as an all-in-one workspace: docs, wikis, projects, and databases.\n- Pricing spans a free personal tier up to business and enterprise seats.\n- Breadth is the selling point and the risk: powerful, but a steep first hour.\n- (revised in light of: a review of round 1 that flags gaps to fill in the next pass)\n\n### Obsidian\n- Local-first Markdown vault with a strong plugin ecosystem.\n- Free for personal use; paid sync and publish add-ons.\n- Owns the power-user, own-your-data niche.\n- (revised in light of: a review of round 1 that flags gaps to fill in the next pass)\n\n### Roam\n- Bidirectional links and the daily-notes graph as the core loop.\n- Premium positioning with a flat subscription.\n- Defined the networked-thought category, now contested.\n- (revised in light of: a review of round 1 that flags gaps to fill in the next pass)\n\n## break the market down into pricing, features and positioning\n\n### Pricing\n- Free tiers are the funnel; value gates sit at team and sync features.\n- Per-seat pricing dominates; flat plans read as premium.\n- (revised in light of: a review of round 1 that flags gaps to fill in the next pass)\n\n### Features\n- Databases, links, and sync are the axes of differentiation.\n- Extensibility (plugins, API) separates power tools from simple notes.\n- (revised in light of: a review of round 1 that flags gaps to fill in the next pass)\n\n### Positioning\n- The field splits into all-in-one, own-your-data, and networked-thought.\n- Messaging clarity, not feature count, tends to decide adoption.\n- (revised in light of: a review of round 1 that flags gaps to fill in the next pass)\n\n### Write the brief\n- Key points gathered and organized for this goal.\n- Findings are consistent with the brief's scope.\n- Key points gathered and organized for this goal.\n- (revised in light of: a review of round 1 that flags gaps to fill in the next pass)",
+      "children": [
+        {
+          "id": "research-the-space",
+          "goal": "Research the space",
+          "axis": "leaf",
+          "reason": "Small enough to handle in one pass; leaving it a leaf is the honest decision.",
+          "geometry": "point",
+          "stop": null,
+          "rounds": 1,
+          "approval_required": false,
+          "result": "### Research the space\n- Key points gathered and organized for this goal.\n- Findings are consistent with the brief's scope.\n- Key points gathered and organized for this goal.\n- (revised in light of: a review of round 1 that flags gaps to fill in the next pass)",
+          "children": []
+        },
+        {
+          "id": "gather-notes-on-notion-obsidian-and-roam",
+          "goal": "gather notes on Notion, Obsidian and Roam",
+          "axis": "breadth",
+          "reason": "The branches are independent and do not wait on one another. Sweep breadth and fan them out in parallel.",
+          "geometry": "plane",
+          "stop": "3 branches, under max_breadth 6",
+          "rounds": 1,
+          "approval_required": false,
+          "result": "## gather notes on Notion, Obsidian and Roam\n\n### Notion\n- Positioned as an all-in-one workspace: docs, wikis, projects, and databases.\n- Pricing spans a free personal tier up to business and enterprise seats.\n- Breadth is the selling point and the risk: powerful, but a steep first hour.\n- (revised in light of: a review of round 1 that flags gaps to fill in the next pass)\n\n### Obsidian\n- Local-first Markdown vault with a strong plugin ecosystem.\n- Free for personal use; paid sync and publish add-ons.\n- Owns the power-user, own-your-data niche.\n- (revised in light of: a review of round 1 that flags gaps to fill in the next pass)\n\n### Roam\n- Bidirectional links and the daily-notes graph as the core loop.\n- Premium positioning with a flat subscription.\n- Defined the networked-thought category, now contested.\n- (revised in light of: a review of round 1 that flags gaps to fill in the next pass)",
+          "children": [
+            {
+              "id": "notion",
+              "goal": "Notion",
+              "axis": "leaf",
+              "reason": "Small enough to handle in one pass; leaving it a leaf is the honest decision.",
+              "geometry": "point",
+              "stop": null,
+              "rounds": 1,
+              "approval_required": false,
+              "result": "### Notion\n- Positioned as an all-in-one workspace: docs, wikis, projects, and databases.\n- Pricing spans a free personal tier up to business and enterprise seats.\n- Breadth is the selling point and the risk: powerful, but a steep first hour.\n- (revised in light of: a review of round 1 that flags gaps to fill in the next pass)",
+              "children": []
+            },
+            {
+              "id": "obsidian",
+              "goal": "Obsidian",
+              "axis": "leaf",
+              "reason": "Small enough to handle in one pass; leaving it a leaf is the honest decision.",
+              "geometry": "point",
+              "stop": null,
+              "rounds": 1,
+              "approval_required": false,
+              "result": "### Obsidian\n- Local-first Markdown vault with a strong plugin ecosystem.\n- Free for personal use; paid sync and publish add-ons.\n- Owns the power-user, own-your-data niche.\n- (revised in light of: a review of round 1 that flags gaps to fill in the next pass)",
+              "children": []
+            },
+            {
+              "id": "roam",
+              "goal": "Roam",
+              "axis": "leaf",
+              "reason": "Small enough to handle in one pass; leaving it a leaf is the honest decision.",
+              "geometry": "point",
+              "stop": null,
+              "rounds": 1,
+              "approval_required": false,
+              "result": "### Roam\n- Bidirectional links and the daily-notes graph as the core loop.\n- Premium positioning with a flat subscription.\n- Defined the networked-thought category, now contested.\n- (revised in light of: a review of round 1 that flags gaps to fill in the next pass)",
+              "children": []
+            }
+          ]
+        },
+        {
+          "id": "break-the-market-down-into-pricing-featu",
+          "goal": "break the market down into pricing, features and positioning",
+          "axis": "depth",
+          "reason": "This node is too large to handle in one pass, so it is a seed, not a leaf. Sweep depth and open a smaller structure of its own in place.",
+          "geometry": "solid",
+          "stop": "depth 1, under max_depth 3",
+          "rounds": 1,
+          "approval_required": false,
+          "result": "## break the market down into pricing, features and positioning\n\n### Pricing\n- Free tiers are the funnel; value gates sit at team and sync features.\n- Per-seat pricing dominates; flat plans read as premium.\n- (revised in light of: a review of round 1 that flags gaps to fill in the next pass)\n\n### Features\n- Databases, links, and sync are the axes of differentiation.\n- Extensibility (plugins, API) separates power tools from simple notes.\n- (revised in light of: a review of round 1 that flags gaps to fill in the next pass)\n\n### Positioning\n- The field splits into all-in-one, own-your-data, and networked-thought.\n- Messaging clarity, not feature count, tends to decide adoption.\n- (revised in light of: a review of round 1 that flags gaps to fill in the next pass)",
+          "children": [
+            {
+              "id": "pricing",
+              "goal": "Pricing",
+              "axis": "leaf",
+              "reason": "Small enough to handle in one pass; leaving it a leaf is the honest decision.",
+              "geometry": "point",
+              "stop": null,
+              "rounds": 1,
+              "approval_required": false,
+              "result": "### Pricing\n- Free tiers are the funnel; value gates sit at team and sync features.\n- Per-seat pricing dominates; flat plans read as premium.\n- (revised in light of: a review of round 1 that flags gaps to fill in the next pass)",
+              "children": []
+            },
+            {
+              "id": "features",
+              "goal": "Features",
+              "axis": "leaf",
+              "reason": "Small enough to handle in one pass; leaving it a leaf is the honest decision.",
+              "geometry": "point",
+              "stop": null,
+              "rounds": 1,
+              "approval_required": false,
+              "result": "### Features\n- Databases, links, and sync are the axes of differentiation.\n- Extensibility (plugins, API) separates power tools from simple notes.\n- (revised in light of: a review of round 1 that flags gaps to fill in the next pass)",
+              "children": []
+            },
+            {
+              "id": "positioning",
+              "goal": "Positioning",
+              "axis": "leaf",
+              "reason": "Small enough to handle in one pass; leaving it a leaf is the honest decision.",
+              "geometry": "point",
+              "stop": null,
+              "rounds": 1,
+              "approval_required": false,
+              "result": "### Positioning\n- The field splits into all-in-one, own-your-data, and networked-thought.\n- Messaging clarity, not feature count, tends to decide adoption.\n- (revised in light of: a review of round 1 that flags gaps to fill in the next pass)",
+              "children": []
+            }
+          ]
+        },
+        {
+          "id": "write-the-brief",
+          "goal": "Write the brief",
+          "axis": "leaf",
+          "reason": "Small enough to handle in one pass; leaving it a leaf is the honest decision.",
+          "geometry": "point",
+          "stop": null,
+          "rounds": 1,
+          "approval_required": false,
+          "result": "### Write the brief\n- Key points gathered and organized for this goal.\n- Findings are consistent with the brief's scope.\n- Key points gathered and organized for this goal.\n- (revised in light of: a review of round 1 that flags gaps to fill in the next pass)",
+          "children": []
+        }
+      ]
+    }
+  ]
+}

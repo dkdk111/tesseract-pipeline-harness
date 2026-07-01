@@ -4,16 +4,31 @@ All notable changes to this project are documented here. The format follows
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and the project aims to
 follow [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased]
+## [0.2.0] - 2026-07-01
 
 ### Added
 
+- Free-form self-design: `tesseract_pipeline/infer.py` reads a plain-English goal and
+  infers its nature (no axis declared), with a new `tesseract think "<goal>"` command
+  and a `07_freeform_inference` demo that opens all four axes from one sentence. A
+  deterministic heuristic with an explicit `LLMPlanner` seam for open-domain goals.
+- The Verify wall in code: `tesseract_pipeline/verify.py` re-examines a structure for
+  degenerate or unjustified shapes before execution, surfaced in the run output and
+  the trace, with a `--strict` flag to refuse a failing structure.
+
+### Changed
+
+- Time axis now has two real, reachable stop conditions: convergence (a round adds no
+  improvement over the last) and the round limit. Removed the previously unreachable
+  string-matched convergence branch (dead code).
+- Output and render now state plainly that the structure and its execution are real
+  while, under the default simulator, the leaf content is placeholder text.
 - `docs/OVERVIEW.md`: a conceptual guide to what the harness means, where the
   meta-instructions live, and how agent mode and engine mode differ.
-- Demo gallery: six examples across distinct domains and structural signatures
-  (research, devops, data/etl, writing, localization, maintenance), each committed
-  with its generated trace. New `tesseract gallery` command prints a comparison
-  table of which axes each demo opens.
+- Demo gallery: examples across distinct domains and structural signatures
+  (research, devops, data/etl, writing, localization, maintenance, free-form), each
+  committed with its generated trace. New `tesseract gallery` command prints a
+  comparison table of which axes each demo opens.
 - Human approval gate in the engine: a task unit can declare `"approval": true`, and
   the executor holds that leaf instead of running it, marking it in the trace and
   render. Demonstrated by `02_software_release` (deploy).

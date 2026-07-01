@@ -28,7 +28,7 @@ _LABEL = {
 }
 
 
-def write_trace(root: Node, goal: str, box: Box, out_dir: str) -> dict:
+def write_trace(root: Node, goal: str, box: Box, out_dir: str, issues=None) -> dict:
     os.makedirs(out_dir, exist_ok=True)
 
     tesseract_path = os.path.join(out_dir, "tesseract.json")
@@ -38,11 +38,17 @@ def write_trace(root: Node, goal: str, box: Box, out_dir: str) -> dict:
 
     trace_path = os.path.join(out_dir, "trace.md")
     with open(trace_path, "w", encoding="utf-8", newline="\n") as fh:
-        fh.write(build_trace_md(root, goal, box))
+        fh.write(build_trace_md(root, goal, box, issues))
 
     output_path = os.path.join(out_dir, "output.md")
     with open(output_path, "w", encoding="utf-8", newline="\n") as fh:
-        fh.write((root.result or "").strip() + "\n")
+        note = (
+            "> Note: the four-axis structure and its execution (ordering, parallelism, "
+            "recursion, iteration) are real. The leaf content below is deterministic "
+            "placeholder text from the default simulator, not a model's work. Attach a "
+            "Worker or LLMWorker for real leaves.\n\n"
+        )
+        fh.write(note + (root.result or "").strip() + "\n")
 
     return {
         "tesseract": tesseract_path,
@@ -52,13 +58,22 @@ def write_trace(root: Node, goal: str, box: Box, out_dir: str) -> dict:
     }
 
 
-def build_trace_md(root: Node, goal: str, box: Box) -> str:
+def build_trace_md(root: Node, goal: str, box: Box, issues=None) -> str:
     lines: List[str] = []
     lines.append(f"# Trace: {goal}")
     lines.append("")
     lines.append(f"Goal: {goal}")
     lines.append("")
     lines.append(f"Box in force: {box.summary()}.")
+    lines.append("")
+    lines.append("## Verify (the structure re-examined before execution)")
+    lines.append("")
+    if issues:
+        lines.append("Issues found:")
+        for issue in issues:
+            lines.append(f"- {issue}")
+    else:
+        lines.append("Passed: no degenerate sweeps, no unjustified nodes, no ambiguous ids.")
     lines.append("")
     lines.append("## The self-design, node by node")
     lines.append("")

@@ -26,5 +26,7 @@ jobs:
         run: python -m tesseract_pipeline demo
       - name: Run the full demo gallery
         run: python -m tesseract_pipeline gallery
+      - name: Infer a structure from a free-form goal
+        run: python -m tesseract_pipeline think --file examples/07_freeform_inference/goal.txt
       - name: Verify the committed example still opens all four axes
         run: python -m tesseract_pipeline render examples/01_market_brief/tesseract.json

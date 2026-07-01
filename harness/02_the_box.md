@@ -50,6 +50,12 @@ This applies the principle "I can be wrong" to the design, not just the result. 
 verify gate that passes everything is not a gate. It is a drawing of one. Run it for
 real, before you build leaf work on top of the structure.
 
+In engine mode this wall is code: `tesseract_pipeline/verify.py` re-examines the
+structure for degenerate and unjustified shapes (a sweep with one branch, a
+single-round time loop, a leaf with children, a node with no reason) before execution,
+and `--strict` refuses a structure that fails. In agent mode you perform the same
+re-examination yourself, in prose, before executing leaf work.
+
 ## Above the walls: the approval gate
 
 For any action that is high risk, irreversible, or reaches outside this repository,

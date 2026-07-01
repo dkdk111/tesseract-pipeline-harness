@@ -4,6 +4,10 @@ Goal: Produce the weekly analytics dataset
 
 Box in force: allowed axes: order, breadth, depth, time | max_depth 3 | max_breadth 6 | max_rounds 3.
 
+## Verify (the structure re-examined before execution)
+
+Passed: no degenerate sweeps, no unjustified nodes, no ambiguous ids.
+
 ## The self-design, node by node
 
 - `root` opened **Order** (line).

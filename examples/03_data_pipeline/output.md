@@ -1,3 +1,5 @@
+> Note: the four-axis structure and its execution (ordering, parallelism, recursion, iteration) are real. The leaf content below is deterministic placeholder text from the default simulator, not a model's work. Attach a Worker or LLMWorker for real leaves.
+
 ## Produce the weekly analytics dataset
 
 ## Ingest raw events from all sources

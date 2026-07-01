@@ -21,8 +21,10 @@ from .node import Node
 from .planner import plan
 from .executor import Executor
 from .worker import Worker, SimulatedWorker
+from .infer import infer_task, HeuristicPlanner
+from .verify import verify_structure
 
-__version__ = "0.1.0"
+__version__ = "0.2.0"
 
 __all__ = [
     "Axis",
@@ -34,5 +36,8 @@ __all__ = [
     "Executor",
     "Worker",
     "SimulatedWorker",
+    "infer_task",
+    "HeuristicPlanner",
+    "verify_structure",
     "__version__",
 ]

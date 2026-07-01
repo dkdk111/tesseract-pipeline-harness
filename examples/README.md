@@ -1,6 +1,6 @@
 # Examples: a gallery across domains and perspectives
 
-Six demos, each from a different domain and each with a different structural
+Seven demos, each from a different domain and each with a different structural
 signature, so the harness is convincing from more than one angle. Every one runs
 with no model and no keys. See them all at once:
 
@@ -14,6 +14,7 @@ example                domain         O B D T  leaf  perspective
 04_book_chapter        writing        O B . T    5   time wrapping order and breadth (a revision loop)
 05_bulk_translation    localization   . B . .    6   breadth only, and it hits the box's max_breadth wall
 06_quick_fix           maintenance    . . . .    1   a single leaf: the harness refuses to invent dimensions
+07_freeform_inference  free-form      O B D T    8   inferred from a plain sentence, no declaration
 ```
 
 (O = order, B = breadth, D = depth, T = time; a dot means the axis was not opened.)
@@ -46,6 +47,11 @@ line, an honest self-design leaves it a line.
 - 06_quick_fix (maintenance). A one-line job. No axis opens; it stays a single
   leaf. This is the restraint perspective: opening dimensions the work does not need
   is a self-design failure, not thoroughness.
+- 07_freeform_inference (free-form). The input is not a declared `task.json` but a
+  plain-English sentence in `goal.txt`. The harness infers the nature from prose and
+  opens all four axes with nothing declared. This is the self-design perspective:
+  structure derived from raw text, not hand-drawn. Run it with
+  `python -m tesseract_pipeline think --file examples/07_freeform_inference/goal.txt`.
 
 ## Each demo's files
 

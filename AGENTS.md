@@ -121,7 +121,9 @@ Then you have not described the tesseract. You have run one.
 ## A reference implementation exists
 
 This repository also ships a runnable engine (the `tesseract_pipeline` Python
-package) that performs the same self-design from a task's declared nature and
-executes the four axes for real, with a pluggable worker. You do not need it to
+package) that performs the same self-design and executes the four axes for real, with
+a pluggable worker. It can take the nature declared in a `task.json`, or infer it from
+a free-form goal (`python -m tesseract_pipeline think "<goal>"`, module `infer.py`).
+It runs the Verify wall in code (`verify.py`) before executing. You do not need it to
 operate; it is a reference you can read to see the ontology as code, and a keyless
 demonstration (`python -m tesseract_pipeline demo`) of exactly what you do here.

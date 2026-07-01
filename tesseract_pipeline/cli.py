@@ -23,10 +23,12 @@ from . import __version__
 from .axes import Axis
 from .box import Box
 from .executor import Executor
+from .infer import infer_task
 from .node import Node
 from .planner import plan
 from .render import render_tree
 from .trace import write_trace
+from .verify import verify_structure
 from .worker import SimulatedWorker
 
 _HERE = os.path.dirname(os.path.abspath(__file__))
@@ -62,10 +64,25 @@ def _load_task(path: str) -> dict:
         return json.load(fh)
 
 
-def _run_task(task: dict, box: Box, out_dir: str, quiet: bool = False) -> dict:
+def _run_task(task: dict, box: Box, out_dir: str, quiet: bool = False, strict: bool = False) -> dict:
     root = plan(task, box)
+
+    # The Verify wall: re-examine the structure before executing it.
+    issues = verify_structure(root, box)
+    if not quiet:
+        if issues:
+            print("Verify (adversarial re-examination of the structure): issues found")
+            for issue in issues:
+                print(f"  - {issue}")
+        else:
+            print("Verify: structure passed (no degenerate sweeps, no unjustified nodes).")
+        print()
+    if issues and strict:
+        print("strict mode: refusing to execute a structure that failed verify.", file=sys.stderr)
+        return {"verify_failed": issues}
+
     Executor(SimulatedWorker()).run(root)
-    info = write_trace(root, task.get("goal", ""), box, out_dir)
+    info = write_trace(root, task.get("goal", ""), box, out_dir, issues=issues)
     if not quiet:
         print(render_tree(root.to_dict()))
         print(f"trace written to: {out_dir}")
@@ -79,7 +96,7 @@ def _cmd_demo(args: argparse.Namespace) -> int:
     task = _load_task(_DEMO_TASK)
     box = Box.load(_box_path(args.box))
     out_dir = args.out or os.path.join(_REPO_ROOT, ".tesseract", "demo")
-    _run_task(task, box, out_dir)
+    _run_task(task, box, out_dir, strict=getattr(args, "strict", False))
     return 0
 
 
@@ -88,7 +105,7 @@ def _cmd_run(args: argparse.Namespace) -> int:
     box = Box.load(_box_path(args.box))
     default_out = os.path.join(_REPO_ROOT, ".tesseract", _slug(task.get("goal", "run")))
     out_dir = args.out or default_out
-    _run_task(task, box, out_dir)
+    _run_task(task, box, out_dir, strict=getattr(args, "strict", False))
     return 0
 
 
@@ -106,21 +123,31 @@ def _axes_marks(opened: set) -> str:
 
 def _cmd_gallery(args: argparse.Namespace) -> int:
     box = Box.load(_box_path(args.box))
-    paths = sorted(glob.glob(os.path.join(_REPO_ROOT, "examples", "*", "task.json")))
-    if not paths:
-        print("no examples found under examples/*/task.json", file=sys.stderr)
+    dirs = sorted(d for d in glob.glob(os.path.join(_REPO_ROOT, "examples", "*")) if os.path.isdir(d))
+    if not dirs:
+        print("no examples found under examples/", file=sys.stderr)
         return 1
 
     rows = []
-    for path in paths:
-        task = _load_task(path)
+    for directory in dirs:
+        task_path = os.path.join(directory, "task.json")
+        goal_path = os.path.join(directory, "goal.txt")
+        if os.path.exists(task_path):
+            task = _load_task(task_path)
+        elif os.path.exists(goal_path):
+            with open(goal_path, "r", encoding="utf-8") as fh:
+                task = infer_task(fh.read())
+            task.setdefault("domain", "free-form")
+            task.setdefault("perspective", "inferred from prose (no declaration)")
+        else:
+            continue
         root = plan(task, box)
         Executor(SimulatedWorker()).run(root)
         opened = root.axes_opened()
         leaves = _count(root, lambda n: n.axis == Axis.LEAF)
         gates = _count(root, lambda n: n.approval_required)
         rounds = root.rounds if root.axis == Axis.TIME else 1
-        name = os.path.basename(os.path.dirname(path))
+        name = os.path.basename(directory)
         rows.append(
             {
                 "name": name,
@@ -148,6 +175,26 @@ def _cmd_gallery(args: argparse.Namespace) -> int:
     print(bar)
     print(f"{len(rows)} demos. Each opens exactly the axes its work needs, and no more.")
     print("Render any one in full with: python -m tesseract_pipeline render examples/<name>/tesseract.json")
+    return 0
+
+
+def _cmd_think(args: argparse.Namespace) -> int:
+    if args.file:
+        with open(args.file, "r", encoding="utf-8") as fh:
+            text = fh.read()
+    else:
+        text = " ".join(args.goal or [])
+    if not text.strip():
+        print("error: give a free-form goal, or --file", file=sys.stderr)
+        return 2
+    task = infer_task(text)
+    box = Box.load(_box_path(args.box))
+    out_dir = args.out or os.path.join(_REPO_ROOT, ".tesseract", _slug(task.get("goal", "think")))
+    print("Inferred a structure from a free-form goal, with no axis declared")
+    print("(heuristic inference, no model):")
+    print(f'  "{text.strip()}"')
+    print()
+    _run_task(task, box, out_dir, strict=getattr(args, "strict", False))
     return 0
 
 
@@ -193,13 +240,25 @@ def build_parser() -> argparse.ArgumentParser:
     p_demo = sub.add_parser("demo", help="run the bundled example end to end")
     p_demo.add_argument("--out", help="output directory for the trace")
     p_demo.add_argument("--box", help="path to box.config.json")
+    p_demo.add_argument("--strict", action="store_true", help="refuse to execute if verify finds issues")
     p_demo.set_defaults(func=_cmd_demo)
 
     p_run = sub.add_parser("run", help="plan, execute, and trace a task.json")
     p_run.add_argument("task", help="path to a task.json")
     p_run.add_argument("--out", help="output directory for the trace")
     p_run.add_argument("--box", help="path to box.config.json")
+    p_run.add_argument("--strict", action="store_true", help="refuse to execute if verify finds issues")
     p_run.set_defaults(func=_cmd_run)
+
+    p_think = sub.add_parser(
+        "think", help="infer a structure from a free-form goal (no declaration), then run it"
+    )
+    p_think.add_argument("goal", nargs="*", help="a free-form goal, in plain words")
+    p_think.add_argument("--file", help="read the goal from a text file instead")
+    p_think.add_argument("--out", help="output directory for the trace")
+    p_think.add_argument("--box", help="path to box.config.json")
+    p_think.add_argument("--strict", action="store_true", help="refuse to execute if verify finds issues")
+    p_think.set_defaults(func=_cmd_think)
 
     p_gallery = sub.add_parser("gallery", help="run every example and print a comparison table")
     p_gallery.add_argument("--box", help="path to box.config.json")
