@@ -1,0 +1,13 @@
+{
+  "allowed_axes": ["order", "breadth", "depth", "time"],
+  "max_depth": 3,
+  "max_breadth": 6,
+  "max_rounds": 3,
+  "approval_required": [
+    "moving money, purchases, payments",
+    "sending messages, emails, or publishing externally",
+    "deleting or overwriting files outside .tesseract/",
+    "network calls with side effects",
+    "any irreversible change"
+  ]
+}

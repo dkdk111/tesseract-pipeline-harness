@@ -117,3 +117,11 @@ no trace has not demonstrated anything.
 9. Finish the trace. Summarize which axes the task actually opened.
 
 Then you have not described the tesseract. You have run one.
+
+## A reference implementation exists
+
+This repository also ships a runnable engine (the `tesseract_pipeline` Python
+package) that performs the same self-design from a task's declared nature and
+executes the four axes for real, with a pluggable worker. You do not need it to
+operate; it is a reference you can read to see the ontology as code, and a keyless
+demonstration (`python -m tesseract_pipeline demo`) of exactly what you do here.

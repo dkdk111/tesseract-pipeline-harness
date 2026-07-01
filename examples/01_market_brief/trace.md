@@ -1,59 +1,49 @@
-# Trace: competitive market brief
+# Trace: Competitive market brief on note-taking apps
 
-Goal: produce a competitive market brief on the note-taking app space (Notion,
-Obsidian, Roam) across pricing, features, positioning, ending with a recommendation.
+Goal: Competitive market brief on note-taking apps
 
-Box in force: all four axes allowed, max_depth 3, max_breadth 6, max_rounds 3. No
-approval-required actions.
+Box in force: allowed axes: order, breadth, depth, time | max_depth 3 | max_breadth 6 | max_rounds 3.
 
 ## The self-design, node by node
 
-- `root` opened Time. The brief does not close in one pass. It runs draft, review,
-  revise, in rounds, until a round stops improving. Reason: one pass is not enough;
-  the result of a pass feeds the next. Stopped after round 2 (round 2 improved on
-  round 1; a third round would have been a dry round).
-
-- `round-body` opened Order. Inside a round the work has a hard front-to-back
-  dependency: collect, then analyze, then write, then review. Each step consumes the
-  previous step's output, so they lie on a line.
-
-- `collect` opened Breadth. The three competitors are independent; gathering on one
-  does not wait on another, so they fan into three parallel branches.
-
-  - `collect:notion` opened Depth. Notion is too large to summarize flat (product
-    lines, pricing tiers, positioning), so this node became a seed and opened its own
-    sub-structure: products, pricing, positioning, each a leaf. Depth 1, well under
-    max_depth 3.
-
-  - `collect:obsidian` stayed a Leaf. One focused product, small enough for one
-    pass. Forcing a depth sweep here would pay nothing, so leaving it a leaf is the
-    honest decision.
-
-  - `collect:roam` stayed a Leaf, same reason.
-
-- `analyze` opened Breadth. The three dimensions (pricing, features, positioning)
-  are independent lenses over the same collected data, so they fan into three
-  parallel branches, each a leaf.
-
-- `write` stayed a Leaf. A single drafting pass over the finished analysis.
-
-- `review` stayed a Leaf. A single adversarial pass over the draft and the
-  structure; its finding is what the next time-axis round consumes.
-
-## Verify (before executing leaf work)
-
-- Is the order honest? Yes: analyze genuinely needs collect's output; this is a real
-  dependency, not a false one serialized for comfort.
-- Is any breadth a false parallel? No: competitors do not depend on each other, and
-  the three analysis lenses are independent.
-- Is the one depth sweep paid for? Yes: Notion does not fit a flat summary; the two
-  leaf competitors were correctly left flat rather than over-split.
-- Is anything too large left as a leaf? No: the only oversized node (Notion) was
-  opened as a seed.
+- `root` opened **Time** (tesseract, 2 rounds).
+  Reason: One pass is not enough: the result of a pass feeds the next. Sweep time and run the whole structure in revision rounds.
+  Stop: stopped after 2 rounds (reached max rounds for this run)
+  - `root-round` opened **Order** (line).
+    Reason: Front-to-back dependency: each step consumes the previous step's output. Sweep order and lay the steps on a line.
+    Stop: closes when the last dependent step completes
+    - `gather-raw-material-on-each-competitor` opened **Breadth** (plane).
+      Reason: The branches are independent and do not wait on one another. Sweep breadth and fan them out in parallel.
+      Stop: 3 branches, under max_breadth 6
+      - `gather-on-notion` opened **Depth** (solid).
+        Reason: This node is too large to handle in one pass, so it is a seed, not a leaf. Sweep depth and open a smaller structure of its own in place.
+        Stop: depth 1, under max_depth 3
+        - `notion-product-lines` stayed a **Leaf** (point).
+          Reason: Small enough to handle in one pass; leaving it a leaf is the honest decision.
+        - `notion-pricing-tiers` stayed a **Leaf** (point).
+          Reason: Small enough to handle in one pass; leaving it a leaf is the honest decision.
+        - `notion-positioning` stayed a **Leaf** (point).
+          Reason: Small enough to handle in one pass; leaving it a leaf is the honest decision.
+      - `gather-on-obsidian` stayed a **Leaf** (point).
+        Reason: Small enough to handle in one pass; leaving it a leaf is the honest decision.
+      - `gather-on-roam-research` stayed a **Leaf** (point).
+        Reason: Small enough to handle in one pass; leaving it a leaf is the honest decision.
+    - `analyze-the-collected-material-across-di` opened **Breadth** (plane).
+      Reason: The branches are independent and do not wait on one another. Sweep breadth and fan them out in parallel.
+      Stop: 3 branches, under max_breadth 6
+      - `compare-pricing-across-competitors` stayed a **Leaf** (point).
+        Reason: Small enough to handle in one pass; leaving it a leaf is the honest decision.
+      - `compare-features-across-competitors` stayed a **Leaf** (point).
+        Reason: Small enough to handle in one pass; leaving it a leaf is the honest decision.
+      - `compare-positioning-across-competitors` stayed a **Leaf** (point).
+        Reason: Small enough to handle in one pass; leaving it a leaf is the honest decision.
+    - `write-the-brief-from-the-analysis` stayed a **Leaf** (point).
+      Reason: Small enough to handle in one pass; leaving it a leaf is the honest decision.
+    - `review-the-draft-and-verify-the-structur` stayed a **Leaf** (point).
+      Reason: Small enough to handle in one pass; leaving it a leaf is the honest decision.
 
 ## Summary
 
-One ordinary task opened all four axes: Time (the revision loop), Order (the
-collect-analyze-write-review spine), Breadth (parallel competitors, parallel
-lenses), Depth (Notion as a seed). The pipeline was a tesseract, not a line, and the
-structure was decided by reading the work, not by a rule baked in advance.
+Axes opened: Order, Breadth, Depth, Time.
+
+All four axes opened. This one task is a full tesseract: order, breadth, depth, and time, decided at runtime by reading the nature of the work, not by a rule baked in advance. A pipeline is not a line.

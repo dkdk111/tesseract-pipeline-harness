@@ -1,0 +1,39 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "tesseract-pipeline"
+version = "0.1.0"
+description = "A working harness that self-designs a task along four orthogonal axes (order, breadth, depth, time), inside a human-held box, and traces the result."
+readme = "README.md"
+requires-python = ">=3.9"
+license = { text = "MIT" }
+authors = [{ name = "DK (Dongmin Kang)" }]
+keywords = ["orchestration", "agents", "pipeline", "self-design", "harness", "llm"]
+classifiers = [
+  "Development Status :: 4 - Beta",
+  "Intended Audience :: Developers",
+  "License :: OSI Approved :: MIT License",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.9",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Topic :: Software Development :: Libraries :: Application Frameworks",
+]
+dependencies = []
+
+[project.urls]
+Homepage = "https://github.com/dkdk111/tesseract-pipeline-harness"
+Repository = "https://github.com/dkdk111/tesseract-pipeline-harness"
+Issues = "https://github.com/dkdk111/tesseract-pipeline-harness/issues"
+
+[project.scripts]
+tesseract = "tesseract_pipeline.cli:main"
+
+[tool.setuptools.packages.find]
+include = ["tesseract_pipeline*"]
+
+[tool.setuptools.package-data]
+tesseract_pipeline = ["py.typed"]

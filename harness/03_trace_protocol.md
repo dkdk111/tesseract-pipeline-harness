@@ -4,13 +4,16 @@ The demonstration is the trace. As you self-design a task, record which axis eac
 node opened and why. A run that leaves no trace has reasoned about a tesseract but
 shown nothing. This protocol defines the artifact you leave behind.
 
-For each task, write two files under `.tesseract/<run-id>/`:
+For each task, write files under `.tesseract/<run-id>/`:
 
 - `trace.md`: the human-readable record (what follows).
 - `tesseract.json`: the machine-readable node tree (schema below), which
-  `tools/render_tesseract.py` can render.
+  `python -m tesseract_pipeline render <file>` can render.
+- `output.md`: the assembled result of the run.
 
-Use a short run id, for example `.tesseract/2026-07-01_market-brief/`.
+Use a short run id, for example `.tesseract/2026-07-01_market-brief/`. In engine
+mode the harness writes all three files for you (see `tesseract_pipeline/trace.py`);
+in agent mode you write them by hand to the same shape.
 
 ## trace.md
 

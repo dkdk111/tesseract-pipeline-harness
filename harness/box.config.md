@@ -1,8 +1,11 @@
 # box.config.md: the walls for this repo
 
-This file is the box. The human edits it; the agent obeys it and never edits it
-without being asked. It is the concrete form of "the hand that draws the box." Every
-run reads these values first. Change these numbers to loosen or tighten the box.
+This file documents the box in prose. The canonical, machine-readable box the engine
+reads is `box.config.json` at the repository root; the two must agree. The human
+edits both; the agent obeys them and never edits them without being asked. This is
+the concrete form of "the hand that draws the box." Every run reads the box first.
+Change these values to loosen or tighten the box. In agent mode, a coding agent reads
+this prose; in engine mode, the Python harness reads `box.config.json`.
 
 ## Allowed axes
 

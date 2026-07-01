@@ -1,24 +1,32 @@
 # Tesseract Pipeline Harness
 
-A runnable starter pack that makes the idea in the book *Tesseract Pipeline*
-executable. Point a coding agent (such as Claude Code) at this repository and it
-stops running tasks as a line and starts running them as a tesseract: it decides the
-structure of a task at runtime, along four orthogonal axes, inside a box you hold,
-and leaves a trace that makes the four dimensions visible.
+> A pipeline is not a line. It is a tesseract that a model opens along four
+> orthogonal axes, inside a box that a human draws.
 
-[한국어 README](README.ko.md)
+[![CI](https://github.com/dkdk111/tesseract-pipeline-harness/actions/workflows/ci.yml/badge.svg)](https://github.com/dkdk111/tesseract-pipeline-harness/actions/workflows/ci.yml)
+[![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+[![Python 3.9+](https://img.shields.io/badge/python-3.9%2B-blue.svg)](https://www.python.org/)
+[![Dependencies: none](https://img.shields.io/badge/dependencies-none-brightgreen.svg)](pyproject.toml)
+
+A runnable harness that turns the idea in the book *Tesseract Pipeline* into working
+software. Give it a task, and it decides the task's structure at runtime along four
+orthogonal axes (order, breadth, depth, time), executes that structure for real,
+stays inside a box you control, and writes a trace that makes the four dimensions
+visible. It runs with no model and no API keys out of the box, and it plugs into a
+real model or a coding agent when you want one.
+
+---
 
 ## The idea in one paragraph
 
 What we usually call a pipeline is one-dimensional: a line of steps. Parallelism
 opens a second axis and the line becomes a plane. Recursion opens a third and the
 plane becomes a solid. An iteration loop opens a fourth, time, and the solid becomes
-a tesseract. Every one of these transitions is the same single operation, a sweep:
+a tesseract. Every one of these transitions is the same single operation, a *sweep*:
 push a structure along a new orthogonal axis and take the whole trail as the next
-structure. The subject that opens these axes is not the human drawing a diagram in
-advance. It is the model itself, at runtime, reading the nature of the work, inside
-boundaries a human draws. That is self-design, and it is what this harness makes an
-executing agent actually do.
+structure. The subject that opens these axes is not a human drawing a diagram in
+advance; it is the model itself, at runtime, reading the nature of the work, inside
+boundaries a human sets. That is *self-design*, and this harness makes it executable.
 
 ## The four axes
 
@@ -29,66 +37,191 @@ executing agent actually do.
 | 3D | Depth | solid | recursive nesting | "this node opens again inside" |
 | 4D | Time | tesseract | iterative self-evolution | "run the whole thing again to grow it" |
 
+    point --order--> line --breadth--> plane --depth--> solid --time--> tesseract
+
 All four transitions are the one operation, sweep.
 
-## Try it in 30 seconds, with no model and no keys
+## Quickstart (30 seconds, no model, no keys)
 
-A recorded run ships with the repo. Render it:
+```bash
+git clone https://github.com/dkdk111/tesseract-pipeline-harness.git
+cd tesseract-pipeline-harness
+python -m tesseract_pipeline demo
+```
 
-    python tools/render_tesseract.py examples/01_market_brief/tesseract.json
+That self-designs and executes one ordinary task (a competitive market brief), opens
+all four axes, and prints the trace. No installation, no dependencies, no keys. The
+default worker is a deterministic simulator, so the run is fully reproducible; the
+four axes, the sweep, and the box are real and really executed, and only the leaf
+content is synthetic.
 
-You will see one ordinary task (a competitive market brief) open all four axes: a
-time loop of revision rounds, an order spine of collect-analyze-write-review,
-breadth fan-outs of parallel competitors and parallel lenses, and a depth sweep
-where one oversized competitor becomes a seed. The renderer is deterministic and
-standard-library only. This is the demonstration you can run without attaching
-anything.
+Output ends with:
 
-## Use it with a coding agent
+```
+  All four axes opened. This one task is a full tesseract:
+  order, breadth, depth, and time, decided at runtime by reading
+  the nature of the work, not by a rule baked in advance.
 
-1. Open this repository in your coding agent (Claude Code reads `CLAUDE.md`; other
-   agents read `AGENTS.md`; both point to the same operating law).
-2. Edit `harness/box.config.md` to set your walls: which axes are allowed, max
-   depth, max breadth, max rounds, and which actions require your approval.
-3. Give the agent a task (write it into `.tesseract/` using `templates/task.md`, or
-   just describe it). The agent will self-design the structure along the four axes,
-   stay inside your box, and write a trace under `.tesseract/`.
-4. Read the trace, or render its `tesseract.json`, to see the shape it chose and why.
+  A pipeline is not a line.
+```
 
-The agent chooses which axes to open by reading the work. You choose the walls. Any
-high-risk, irreversible, or outside-the-repo action requires your explicit approval,
-never self-design. The clearer your walls, the more freely the agent can design
-inside them: the constraint is what expands the autonomy.
+## What actually happens on a run
 
-## What is in here
+1. Plan (self-design). The planner reads the task's declared nature and asks four
+   questions in order: is one pass enough (else Time), is there front-to-back
+   dependency (Order), do independent branches split off (Breadth), is a part too big
+   to handle flat (Depth). The first that fits, and the box allows, opens. A simple
+   task stays a single leaf.
+2. Execute. The executor runs the structure for real: Order threads each step's
+   output into the next, Breadth runs branches concurrently, Depth recurses, and Time
+   re-runs the whole subtree in rounds until it stops.
+3. Trace. The harness writes `tesseract.json` (the structure and results), `trace.md`
+   (the human-readable self-design record), and `output.md` (the assembled result).
+   A run that leaves no trace has demonstrated nothing.
 
-    AGENTS.md              The operating law. The agent's brain. Read first.
-    CLAUDE.md              Claude Code entry point (points to AGENTS.md).
-    harness/
-      00_ontology.md       The one operation (sweep) and the four axes.
-      01_self_design.md    How the agent decides structure: the four questions.
-      02_the_box.md        Control: boundary, stop, verify, and the approval gate.
-      03_trace_protocol.md How the agent records the dimensional expansion.
-      box.config.md        The live walls for this repo. You edit this.
-    examples/
-      01_market_brief/     A recorded run that opens all four axes.
-    tools/
-      render_tesseract.py  Deterministic, keyless trace renderer.
-    templates/             Blank task and trace templates.
-    .tesseract/            The agent's working area (git-ignored except its README).
+See a full recorded run in [`examples/01_market_brief/`](examples/01_market_brief).
 
-## This repo is its own example
+## Use it as a real harness
+
+### Engine mode (Python)
+
+Describe a task's nature in a small JSON file and run it. The task declares
+*properties* of the work, not axes; the planner derives the axes.
+
+```bash
+python -m tesseract_pipeline new my_task.json     # scaffold a template
+python -m tesseract_pipeline run my_task.json      # plan, execute, trace
+```
+
+To make the leaves real, swap the default simulator for a model. Only the worker
+changes; the planner, the executor, and the box are untouched. See
+[`examples/llm_worker_example.py`](examples/llm_worker_example.py).
+
+### Agent mode (Claude Code and other coding agents)
+
+Point a coding agent at this repository. It reads [`CLAUDE.md`](CLAUDE.md) (Claude
+Code) or [`AGENTS.md`](AGENTS.md) (generic), which are the operating law: self-design
+free-form tasks along the same four axes, obey the same box, and leave a trace under
+`.tesseract/`. The agent is the live model; no API code is needed in the repo.
+
+Both modes share one ontology and one box. Engine mode is the reference you can read
+and run; agent mode is the harness attached to a live agent.
+
+## The box: control you hold
+
+The model chooses which axes to open. You choose the walls. The canonical,
+machine-readable box is [`box.config.json`](box.config.json); its prose
+documentation is [`harness/box.config.md`](harness/box.config.md).
+
+```json
+{
+  "allowed_axes": ["order", "breadth", "depth", "time"],
+  "max_depth": 3,
+  "max_breadth": 6,
+  "max_rounds": 3,
+  "approval_required": [
+    "moving money, purchases, payments",
+    "sending messages, emails, or publishing externally",
+    "deleting or overwriting files outside .tesseract/",
+    "network calls with side effects",
+    "any irreversible change"
+  ]
+}
+```
+
+Three walls plus a gate: Boundary (which axes, how far), Stop (every sweep pairs with
+a stop condition), Verify (re-examine the structure adversarially before building on
+it), and an Approval gate for high-risk or irreversible actions, which are never
+self-designed. The paradox the book insists on holds here: the clearer the walls, the
+more freely the model can design inside them. Control is not the opposite of autonomy;
+it is its precondition.
+
+## Task schema (declare the nature, not the axes)
+
+```jsonc
+{
+  "goal": "one line describing the whole job",
+  "iterative": true,          // not one-shot -> the planner opens Time
+  "rounds": 2,                 // capped by the box's max_rounds
+  "sequence": [                // dependency between steps -> Order
+    {
+      "goal": "a step",
+      "parallel": [            // independent branches -> Breadth
+        { "goal": "a branch" },
+        {
+          "goal": "an oversized branch",
+          "oversized": true,   // too big to handle flat -> Depth
+          "parts": [ { "goal": "a sub-part" } ]
+        }
+      ]
+    },
+    { "goal": "a dependent later step" }
+  ]
+}
+```
+
+A unit with none of these properties is a leaf. A unit that declares more than one
+opens the outermost axis here and the rest in its child, exactly as the book's local,
+recursive, incremental decision requires.
+
+## Repository layout
+
+```
+AGENTS.md / CLAUDE.md      Agent-mode operating law (the brain for a coding agent).
+box.config.json            The box the engine reads (you edit this).
+harness/                   The ontology, shared by both modes.
+  00_ontology.md             The sweep and the four axes.
+  01_self_design.md          The four-question decision procedure.
+  02_the_box.md              Control: boundary, stop, verify, approval gate.
+  03_trace_protocol.md       How a run is recorded.
+  box.config.md              Prose docs for box.config.json.
+tesseract_pipeline/        The engine (standard library only).
+  planner.py                 Self-design: nature -> four-axis structure.
+  executor.py                Real order, breadth, depth, and time execution.
+  worker.py                  Pluggable leaf work; deterministic simulator default.
+  box.py, node.py, axes.py   The box, the node tree, the axes.
+  trace.py, render.py, cli.py
+examples/                  A recorded run and an LLM-worker sketch.
+tests/                     Standard-library unittest suite.
+tools/render_tesseract.py  Back-compatible renderer shim.
+```
+
+## Install (optional)
+
+The harness needs no install to run. To get the `tesseract` console command:
+
+```bash
+python -m pip install -e .
+tesseract demo
+tesseract run examples/01_market_brief/task.json
+```
+
+## Tests
+
+Standard library only; no test dependencies.
+
+```bash
+python -m unittest discover -s tests -v
+```
+
+CI runs the suite and the demo on Python 3.9 through 3.12.
+
+## This repository is its own example
 
 The book's law is that a demonstration must be built out of the thing it
-demonstrates. So this harness is itself structured along its four axes: the docs sit
-in an order of dependency, the four axis definitions were written in parallel, the
-box document opens into its three walls by depth, and the whole thing is meant to be
-revised in rounds as real runs teach it. The implementation is not a proof bolted
-onto the ontology. It is the shadow the ontology casts.
+demonstrates. So this harness is structured along its own four axes: the docs lie in
+an order of dependency, the axis definitions were written in parallel, the box
+document opens into its three walls by depth, and the whole is meant to be revised in
+rounds as real runs teach it. The implementation is not a proof bolted onto the
+ontology. It is the shadow the ontology casts.
 
 ## Companion to the book
 
-This is the companion implementation to *Tesseract Pipeline* (Korean, by DK), a book
-that argues an AI execution structure is a tesseract opened along four axes by a
-model's self-design. The harness turns that argument into something you can attach to
-an agent and watch happen. License: MIT (see `LICENSE`).
+This is the companion implementation to *Tesseract Pipeline* by DK, a book that
+argues an AI execution structure is a tesseract opened along four axes by a model's
+self-design. The harness turns that argument into something you can run, attach to an
+agent, and watch happen.
+
+## License
+
+MIT. See [LICENSE](LICENSE).

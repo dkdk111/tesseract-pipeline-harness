@@ -1,0 +1,33 @@
+{
+  "goal": "Competitive market brief on note-taking apps",
+  "iterative": true,
+  "rounds": 2,
+  "sequence": [
+    {
+      "goal": "Gather raw material on each competitor",
+      "parallel": [
+        {
+          "goal": "Gather on Notion",
+          "oversized": true,
+          "parts": [
+            { "goal": "Notion product lines" },
+            { "goal": "Notion pricing tiers" },
+            { "goal": "Notion positioning" }
+          ]
+        },
+        { "goal": "Gather on Obsidian" },
+        { "goal": "Gather on Roam Research" }
+      ]
+    },
+    {
+      "goal": "Analyze the collected material across dimensions",
+      "parallel": [
+        { "goal": "Compare pricing across competitors" },
+        { "goal": "Compare features across competitors" },
+        { "goal": "Compare positioning across competitors" }
+      ]
+    },
+    { "goal": "Write the brief from the analysis" },
+    { "goal": "Review the draft and verify the structure was honest" }
+  ]
+}

@@ -38,10 +38,19 @@ of truth for how you behave here; this file only adds the entry sequence.
 - If a task is genuinely one line, leave it as one line. Opening axes the work does
   not need is a self-design failure, not thoroughness.
 
-## Try it without an agent
+## Two modes
 
-A recorded example runs with no model and no keys:
+- Agent mode (you): a coding agent reads this file and `AGENTS.md` and self-designs
+  free-form tasks against the ontology and the box.
+- Engine mode (the Python package): a runnable harness that self-designs a task from
+  its declared nature and executes it with a pluggable worker. Read it to see the
+  ontology as code; the two modes share the same four axes and the same box.
 
-    python tools/render_tesseract.py examples/01_market_brief/tesseract.json
+## Try it without keys
 
-It prints how one task opened all four axes. See `examples/README.md`.
+The engine runs a full example with no model and no keys:
+
+    python -m tesseract_pipeline demo
+
+It self-designs and executes one task, opens all four axes, and writes a trace. See
+`examples/README.md`.
