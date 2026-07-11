@@ -13,3 +13,7 @@ venv/
 Thumbs.db
 .idea/
 .vscode/
+
+# Operator profile: a durable artifact, not a run output — keep it tracked.
+!.tesseract/operator-profile/
+!.tesseract/operator-profile/**
