@@ -14,9 +14,13 @@ of truth for how you behave here; this file only adds the entry sequence.
 2. Read `harness/box.config.md` (the live walls for this repo: which axes are
    allowed, max depth, max breadth, max rounds, budget, approval-required actions).
    These bind the current run.
-3. Run the task using the four-question self-design procedure in
+3. Read `.tesseract/operator-profile/OPERATOR.md` (the operator's self-design bias:
+   how to judge *inside* the box, to match the operator's cognition). The box wins
+   on any conflict; this only shapes how you self-design within it. Background:
+   `.tesseract/operator-profile/profile.md`.
+4. Run the task using the four-question self-design procedure in
    `harness/01_self_design.md`, obeying the box in `harness/02_the_box.md`.
-4. Record the run as a trace under `.tesseract/`, following
+5. Record the run as a trace under `.tesseract/`, following
    `harness/03_trace_protocol.md`.
 
 ## The harness in one screen
